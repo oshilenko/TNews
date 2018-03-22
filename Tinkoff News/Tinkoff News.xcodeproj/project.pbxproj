@@ -45,6 +45,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		880396A2206456790020FD3D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				880396A4206456790020FD3D /* Protocols */,
+				880396A5206456790020FD3D /* Helpers */,
+				880396A3206456790020FD3D /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		880396A3206456790020FD3D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		880396A4206456790020FD3D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		880396A5206456790020FD3D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8831B4F82061962B00731C34 = {
 			isa = PBXGroup;
 			children = (
@@ -76,34 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				8831B51D206198B000731C34 /* AppDelegate.swift */,
-				8831B51A206198B000731C34 /* Common */,
+				880396A2206456790020FD3D /* Common */,
 				8831B51E206198B000731C34 /* Modules */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		8831B51A206198B000731C34 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				8831B52D2061992B00731C34 /* Protocols */,
-				8831B51C206198B000731C34 /* Helpers */,
-				8831B51B206198B000731C34 /* Views */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		8831B51B206198B000731C34 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		8831B51C206198B000731C34 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8831B51E206198B000731C34 /* Modules */ = {
@@ -142,13 +149,6 @@
 				8831B526206198B000731C34 /* Main.storyboard */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		8831B52D2061992B00731C34 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

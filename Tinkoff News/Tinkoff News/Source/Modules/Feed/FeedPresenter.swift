@@ -18,8 +18,9 @@ protocol FeedPresenterOutput {
 
 final class FeedPresenter: NSObject {
     // MARK: - Public variables
-    var output: FeedPresenterOutput!
+    var output:     FeedPresenterOutput!
     var interactor: FeedInteractorInput!
+    var router:     FeedRouterInput!
 }
 
 // MARK: - FeedPresenterInput methods

@@ -17,6 +17,7 @@ final class NewsConfigurator: NSObject {
     private var controller: NewsViewController!
     private let presenter:  NewsPresenter  = NewsPresenter()
     private let interactor: NewsInteractor = NewsInteractor()
+    private let router:     NewsRouter     = NewsRouter()
     
     private override init() {
         super.init()
@@ -46,7 +47,8 @@ private extension NewsConfigurator {
     
     func configurePresenter() {
         presenter.interactor = interactor
-        presenter.output = controller
+        presenter.output     = controller
+        presenter.router     = router
     }
     
     func configureInteractor() {

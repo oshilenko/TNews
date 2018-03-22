@@ -18,8 +18,9 @@ protocol NewsPresenterOutput {
 
 final class NewsPresenter: NSObject {
     // MARK: - Public variables
-    var output: NewsPresenterOutput!
+    var output:     NewsPresenterOutput!
     var interactor: NewsInteractorInput!
+    var router:     NewsRouterInput!
 }
 
 // MARK: - NewsPresenterInput methods

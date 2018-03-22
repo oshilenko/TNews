@@ -17,6 +17,7 @@ final class FeedConfigurator: NSObject {
     private var controller: FeedViewController!
     private let presenter:  FeedPresenter  = FeedPresenter()
     private let interactor: FeedInteractor = FeedInteractor()
+    private let router:     FeedRouter     = FeedRouter()
     
     private override init() {
         super.init()
@@ -46,7 +47,8 @@ private extension FeedConfigurator {
     
     func configurePresenter() {
         presenter.interactor = interactor
-        presenter.output = controller
+        presenter.output     = controller
+        presenter.router     = router
     }
     
     func configureInteractor() {

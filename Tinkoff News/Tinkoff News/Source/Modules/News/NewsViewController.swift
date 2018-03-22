@@ -8,28 +8,39 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
-
+final class NewsViewController: UIViewController {
+    // MARK: - Public variables
+    var presenter: NewsPresenterInput!
+    
+    // MARK: - Private variables
+    private var configurator: NewsConfiguratorInput!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setupConnection()
+        configureViewController()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+// MARK: - NewsPresenterOutput methods
+extension NewsViewController: NewsPresenterOutput {
+    // TODO
+}
+
+private extension NewsViewController {
+    func setupConnection() {
+        configurator = NewsConfigurator.create(controller: self)
+        configurator.configureConnection()
+    }
+    
+    func configureViewController() {
+        // TODO
+    }
+}
+

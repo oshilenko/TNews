@@ -10,6 +10,9 @@
 		8803969620644D780020FD3D /* FeedConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803969520644D780020FD3D /* FeedConfigurator.swift */; };
 		8803969820644D8B0020FD3D /* FeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803969720644D8B0020FD3D /* FeedInteractor.swift */; };
 		8803969A20644D9C0020FD3D /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8803969920644D9C0020FD3D /* FeedPresenter.swift */; };
+		880396A7206456D40020FD3D /* NewsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880396A6206456D40020FD3D /* NewsConfigurator.swift */; };
+		880396A9206456E10020FD3D /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880396A8206456E10020FD3D /* NewsPresenter.swift */; };
+		880396AB206456EE0020FD3D /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880396AA206456EE0020FD3D /* NewsInteractor.swift */; };
 		8831B50D2061962B00731C34 /* Tinkoff_News.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8831B50B2061962B00731C34 /* Tinkoff_News.xcdatamodeld */; };
 		8831B528206198B000731C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8831B51D206198B000731C34 /* AppDelegate.swift */; };
 		8831B529206198B000731C34 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8831B521206198B000731C34 /* FeedViewController.swift */; };
@@ -23,6 +26,9 @@
 		8803969520644D780020FD3D /* FeedConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedConfigurator.swift; sourceTree = "<group>"; };
 		8803969720644D8B0020FD3D /* FeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInteractor.swift; sourceTree = "<group>"; };
 		8803969920644D9C0020FD3D /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		880396A6206456D40020FD3D /* NewsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsConfigurator.swift; sourceTree = "<group>"; };
+		880396A8206456E10020FD3D /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
+		880396AA206456EE0020FD3D /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		8831B5012061962B00731C34 /* Tinkoff News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8831B50C2061962B00731C34 /* Tinkoff_News.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tinkoff_News.xcdatamodel; sourceTree = "<group>"; };
 		8831B5132061962B00731C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				8831B52E2061999700731C34 /* NewsViewController.swift */,
+				880396A6206456D40020FD3D /* NewsConfigurator.swift */,
+				880396A8206456E10020FD3D /* NewsPresenter.swift */,
+				880396AA206456EE0020FD3D /* NewsInteractor.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -224,10 +233,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8831B528206198B000731C34 /* AppDelegate.swift in Sources */,
+				880396A7206456D40020FD3D /* NewsConfigurator.swift in Sources */,
 				8831B529206198B000731C34 /* FeedViewController.swift in Sources */,
+				880396AB206456EE0020FD3D /* NewsInteractor.swift in Sources */,
 				8803969820644D8B0020FD3D /* FeedInteractor.swift in Sources */,
 				8831B50D2061962B00731C34 /* Tinkoff_News.xcdatamodeld in Sources */,
 				8803969620644D780020FD3D /* FeedConfigurator.swift in Sources */,
+				880396A9206456E10020FD3D /* NewsPresenter.swift in Sources */,
 				8803969A20644D9C0020FD3D /* FeedPresenter.swift in Sources */,
 				8831B52F2061999700731C34 /* NewsViewController.swift in Sources */,
 			);

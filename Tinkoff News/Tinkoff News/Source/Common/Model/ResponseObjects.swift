@@ -1,20 +1,21 @@
 //
-//  ResponseObject.swift
+//  Response.swift
 //  Tinkoff News
 //
-//  Created by Ольга Шиленко on 26.03.2018.
+//  Created by Ольга Шиленко on 25.03.2018.
 //  Copyright © 2018 Ольга Шиленко. All rights reserved.
 //
 
 import Foundation
-final class ResponseObject<T: Decodable> {
-    var payload:        T?
+
+final class ResponseObjects<T: Decodable> {
+    var payload:        [T]?
     var resultCode:     String?
     var errorMessage:   String?
     var plainMessage:   String?
     var trackingId:     String?
     
-    init(resultCode: String?, payload: T?, errorMessage: String?,
+    init(resultCode: String?, payload: [T]?, errorMessage: String?,
          plainMessage: String?, trackingId: String?) {
         self.payload        = payload
         self.resultCode     = resultCode
@@ -25,7 +26,7 @@ final class ResponseObject<T: Decodable> {
 }
 
 // MARK: - Decodable methods
-extension ResponseObject: Decodable {
+extension ResponseObjects: Decodable {
     enum ResponseCodingKeys: String, CodingKey {
         case resultCode
         case payload
@@ -36,7 +37,7 @@ extension ResponseObject: Decodable {
     
     convenience init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: ResponseCodingKeys.self)
-        let payload        = try? container.decode(T.self, forKey: .payload)
+        let payload        = try? container.decode([T].self, forKey: .payload)
         let resultCode     = try? container.decode(String.self, forKey: .resultCode)
         let errorMessage   = try? container.decode(String.self, forKey: .errorMessage)
         let plainMessage   = try? container.decode(String.self, forKey: .plainMessage)

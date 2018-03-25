@@ -33,7 +33,7 @@ extension FeedLoadService: FeedLoadServiceInput {
         let success = configureSuccessBlock()
         let failure = configureFailureBlock()
         request?.cancel()
-        request = requestManager.requestObject(method: .post,
+        request = requestManager.requestObjects(method: .post,
                                                baseURL: Constants.URLs.baseUrl,
                                                path: Constants.URLs.Feed.getNews,
                                                parameters: parameters,
@@ -43,7 +43,7 @@ extension FeedLoadService: FeedLoadServiceInput {
 }
 
 private extension FeedLoadService {
-    func configureSuccessBlock() -> Success<ResponseObject> {
+    func configureSuccessBlock() -> Success<[NewsShort]> {
         return { result in
             // TODO
         }

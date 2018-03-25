@@ -12,6 +12,7 @@ typealias Headers = [String: String]
 typealias Parameters = [String: Any]
 typealias Success<T> = (T) -> Void
 typealias Failure = (Error?) -> Void
+typealias RequestCompletion = (Data?, URLResponse?, Error?) -> Void
 
 enum HTTPMethod: String {
     case get = "GET"
@@ -34,62 +35,49 @@ final class RequestManager: NSObject {
 }
 
 extension RequestManager {
-    func requestObject<T>(method: HTTPMethod = .get,
+    func requestObject<T: Decodable>(method: HTTPMethod = .get,
                           baseURL: String,
                           path: String,
                           headers: Headers? = nil,
                           parameters: Parameters? = nil,
                           success: @escaping Success<T>,
                           failure: @escaping Failure) -> URLSessionDataTask? {
-        guard let url = URL(string: "\(baseURL)\(path)") else {
-            print("Can't create URL for baseURL: \(baseURL) and path: \(path)")
-            return nil
-        }
-        
-        let urlRequest = configureUrlRequest(url: url, parameters: parameters, method: method)
-        let task = session.dataTask(with: urlRequest, completionHandler: { [weak self] (data, response, error) in
-            guard let strongSelf = self else { return }
-            
-            let decoder = JSONDecoder()
-            
-            if let error = error {
-                failure(error)
-            } else if let response = response, let httpResponse = response as? HTTPURLResponse,
-                ([Int](200..<300)).contains(where: { $0 == httpResponse.statusCode }) {
-                strongSelf.printLogs(response.description)
-                
-                if let data = data, let jsonResponse = try? decoder.decode(ResponseObject.self, from: data) {
-                    if let object = jsonResponse.payload as? T {
-                        success(object)
-                    } else {
-                        failure(Constants.ServerError.jsonDecoding)
-                    }
-                } else {
-                    failure(Constants.ServerError.jsonDecoding)
-                }
-            } else {
-                failure(Constants.ServerError.nilResponse)
-            }
+        return request(method: method, baseURL: baseURL, path: path, headers: headers,
+                       parameters: parameters, completion: { [weak self] (data, response, error) in
+                        guard let strongSelf = self else { return }
+                        
+                        let decoder = JSONDecoder()
+                        
+                        if let error = error {
+                            failure(error)
+                        } else if let response = response, let httpResponse = response as? HTTPURLResponse,
+                            ([Int](200..<300)).contains(where: { $0 == httpResponse.statusCode }) {
+                            strongSelf.printLogs(response.description)
+                            
+                            if let data = data, let jsonResponse = try? decoder.decode(ResponseObject<T>.self, from: data) {
+                                if let object = jsonResponse.payload {
+                                    success(object)
+                                } else {
+                                    failure(Constants.ServerError.jsonDecoding)
+                                }
+                            } else {
+                                failure(Constants.ServerError.jsonDecoding)
+                            }
+                        } else {
+                            failure(Constants.ServerError.nilResponse)
+                        }
         })
-        task.resume()
-        
-        return task
     }
     
-    func requestObjects<T>(method: HTTPMethod = .get,
+    func requestObjects<T: Decodable>(method: HTTPMethod = .get,
                           baseURL: String,
                           path: String,
                           headers: Headers? = nil,
                           parameters: Parameters? = nil,
-                          success: @escaping Success<T>,
+                          success: @escaping Success<[T]>,
                           failure: @escaping Failure) -> URLSessionDataTask? {
-        guard let url = URL(string: "\(baseURL)\(path)") else {
-            print("Can't create URL for baseURL: \(baseURL) and path: \(path)")
-            return nil
-        }
-        
-        let urlRequest = configureUrlRequest(url: url, parameters: parameters, method: method)
-        let task = session.dataTask(with: urlRequest, completionHandler: { [weak self] (data, response, error) in
+        return request(method: method, baseURL: baseURL, path: path, headers: headers,
+                       parameters: parameters, completion: { [weak self] (data, response, error) in
             guard let strongSelf = self else { return }
             
             let decoder = JSONDecoder()
@@ -100,9 +88,9 @@ extension RequestManager {
                 ([Int](200..<300)).contains(where: { $0 == httpResponse.statusCode }) {
                 strongSelf.printLogs(response.description)
                 
-                if let data = data, let jsonResponse = try? decoder.decode(ResponseObject.self, from: data) {
-                    if let object = jsonResponse.payload as? T {
-                        success(object)
+                if let data = data, let jsonResponse = try? decoder.decode(ResponseObjects<T>.self, from: data) {
+                    if let objects = jsonResponse.payload {
+                        success(objects)
                     } else {
                         failure(Constants.ServerError.jsonDecoding)
                     }
@@ -113,14 +101,29 @@ extension RequestManager {
                 failure(Constants.ServerError.nilResponse)
             }
         })
-        task.resume()
-        
-        return task
     }
 }
 
 // MARK: - Private methods
 private extension RequestManager {
+    func request(method: HTTPMethod = .get,
+                 baseURL: String,
+                 path: String,
+                 headers: Headers? = nil,
+                 parameters: Parameters? = nil,
+                 completion: @escaping RequestCompletion) -> URLSessionDataTask? {
+        guard let url = URL(string: "\(baseURL)\(path)") else {
+            print("Can't create URL for baseURL: \(baseURL) and path: \(path)")
+            return nil
+        }
+        
+        let urlRequest = configureUrlRequest(url: url, parameters: parameters, method: method)
+        let task = session.dataTask(with: urlRequest, completionHandler: completion)
+        task.resume()
+        
+        return task
+    }
+    
     func configure(parameters: Parameters) -> String {
         var components: [(String, String)] = []
         

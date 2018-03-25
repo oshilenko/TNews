@@ -9,7 +9,7 @@
 import Foundation
 
 protocol NewsInteractorInput {
-    // TODO
+    func getNewsContent(id: String)
 }
 
 protocol NewsInteractorOutput {
@@ -18,9 +18,23 @@ protocol NewsInteractorOutput {
 
 final class NewsInteractor: NSObject {
     var output: NewsInteractorOutput!
+    var newsLoadService: NewsLoadService!
 }
 
 // MARK: - NewsInteractorInput methods
 extension NewsInteractor: NewsInteractorInput {
-    // TODO
+    func getNewsContent(id: String) {
+        newsLoadService.getNewsContent(id: id)
+    }
+}
+
+// MARK: - NewsLoadServiceOutput methods
+extension NewsInteractor: NewsLoadServiceOutput {
+    func requestFinishedWithError(error: Error?) {
+        // TODO
+    }
+    
+    func requestFinishedWithSuccess(success: NewsContent) {
+        // TODO
+    }
 }

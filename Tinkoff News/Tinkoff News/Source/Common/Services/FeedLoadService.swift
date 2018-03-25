@@ -13,8 +13,8 @@ protocol FeedLoadServiceInput {
 }
 
 protocol  FeedLoadServiceOutput {
-    func requestFinishedWithSuccess()
-    func requestFinishedWithError()
+    func requestFinishedWithSuccess(success: [NewsShort])
+    func requestFinishedWithError(error: Error?)
 }
 
 final class FeedLoadService: NSObject {
@@ -26,6 +26,7 @@ final class FeedLoadService: NSObject {
     private var request: URLSessionDataTask?
 }
 
+// MARK: - FeedLoadServiceInput methods
 extension FeedLoadService: FeedLoadServiceInput {
     func getFeedList(first: Int, last: Int) {
         let parameters: [String: Any] = ["first": first,
@@ -42,16 +43,17 @@ extension FeedLoadService: FeedLoadServiceInput {
     }
 }
 
+// MARK: - Private variables
 private extension FeedLoadService {
     func configureSuccessBlock() -> Success<[NewsShort]> {
-        return { result in
-            // TODO
+        return { [weak self] news in
+            self?.output.requestFinishedWithSuccess(success: news)
         }
     }
     
     func configureFailureBlock() -> Failure {
-        return { error in
-            // TODO
+        return { [weak self] error in
+            self?.output.requestFinishedWithError(error: error)
         }
     }
 }

@@ -28,13 +28,13 @@ extension FeedInteractor: FeedInteractorInput {
     }
 }
 
-
+// MARK: - FeedLoadServiceOutput methods
 extension FeedInteractor: FeedLoadServiceOutput {
-    func requestFinishedWithSuccess() {
+    func requestFinishedWithSuccess(success: [NewsShort]) {
         // TODO
     }
     
-    func requestFinishedWithError() {
+    func requestFinishedWithError(error: Error?) {
         // TODO
     }
 }

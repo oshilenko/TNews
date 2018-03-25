@@ -1,5 +1,5 @@
 //
-//  News.swift
+//  NewsContent.swift
 //  Tinkoff News
 //
 //  Created by Ольга Шиленко on 26.03.2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class News {
+final class NewsContent {
     var title:                  NewsShort?
     var creationDate:           PublicationDate?
     var lastModificationDate:   PublicationDate?
@@ -28,7 +28,7 @@ final class News {
 }
 
 // MARK: - Decodable methods
-extension News: Decodable {
+extension NewsContent: Decodable {
     enum NewsCodingKeys: String, CodingKey {
         case title
         case creationDate

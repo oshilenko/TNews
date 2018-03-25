@@ -37,6 +37,7 @@ private extension FeedViewController {
     func setupConnection() {
         configurator = FeedConfigurator.create(controller: self)
         configurator.configureConnection()
+        presenter.viewDidLoad()
     }
     
     func configureViewController() {

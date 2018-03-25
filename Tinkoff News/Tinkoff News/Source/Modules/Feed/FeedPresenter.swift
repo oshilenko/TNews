@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FeedPresenterInput {
-    // TODO
+    func viewDidLoad()
 }
 
 protocol FeedPresenterOutput {
@@ -25,7 +25,9 @@ final class FeedPresenter: NSObject {
 
 // MARK: - FeedPresenterInput methods
 extension FeedPresenter: FeedPresenterInput {
-    // TODO
+    func viewDidLoad() {
+        interactor.getFeed(first: 0, last: 20)
+    }
 }
 
 // MARK: - FeedInteractorOutput methods

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FeedInteractorInput {
-    // TODO
+    func getFeed(first: Int, last: Int)
 }
 
 protocol FeedInteractorOutput {
@@ -18,9 +18,23 @@ protocol FeedInteractorOutput {
 
 final class FeedInteractor: NSObject {
     var output: FeedInteractorOutput!
+    var feedLoadService: FeedLoadService!
 }
 
 // MARK: - FeedInteractorInput methods
 extension FeedInteractor: FeedInteractorInput {
-    // TODO
+    func getFeed(first: Int, last: Int) {
+        feedLoadService.getFeedList(first: first, last: last)
+    }
+}
+
+
+extension FeedInteractor: FeedLoadServiceOutput {
+    func requestFinishedWithSuccess() {
+        // TODO
+    }
+    
+    func requestFinishedWithError() {
+        // TODO
+    }
 }

@@ -22,7 +22,7 @@ final class FeedLoadService: NSObject {
     var output: FeedLoadServiceOutput!
     
     // MARK: - Private variables
-    private let requestManager: RequestManager = RequestManager.shared
+    private let requestManager: RequestManager = RequestManager()
     private var request: URLSessionDataTask?
 }
 
@@ -33,12 +33,12 @@ extension FeedLoadService: FeedLoadServiceInput {
         let success = configureSuccessBlock()
         let failure = configureFailureBlock()
         request?.cancel()
-        request = requestManager.requestObject(method: .get,
-                                     baseURL: Constants.URLs.baseUrl,
-                                     path: Constants.URLs.Feed.getNews,
-                                     parameters: parameters,
-                                     success: success,
-                                     failure: failure)
+        request = requestManager.requestObject(method: .post,
+                                               baseURL: Constants.URLs.baseUrl,
+                                               path: Constants.URLs.Feed.getNews,
+                                               parameters: parameters,
+                                               success: success,
+                                               failure: failure)
     }
 }
 

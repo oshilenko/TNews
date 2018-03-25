@@ -12,7 +12,7 @@ struct Constants {
     
     public struct ServerError {
         static public let unknown = NSError(domain: "unknown", code: 0)
-        static public let JSONDecoding = NSError(domain: "JSONDecodingError", code: 0)
+        static public let jsonDecoding = NSError(domain: "JSONDecodingError", code: 0)
         static public let nilResponse = NSError(domain: "NilResponse", code: 0)
         static public let noInternetConnection = NSError(domain: "NoInternetConnection", code: 0)
     }

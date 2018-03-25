@@ -19,15 +19,13 @@ enum HTTPMethod: String {
 }
 
 final class RequestManager: NSObject {
-    static var shared: RequestManager = RequestManager()
-    
     // MARK: - Public variables
-    var isPrintedLogs: Bool = false
+    static var isPrintedLogs: Bool = false
     
     // MARK: - Pivate variables
     private var session: URLSession!
     
-    private override init() {
+    override init() {
         super.init()
         
         let configuration = URLSessionConfiguration.default
@@ -49,7 +47,6 @@ extension RequestManager {
         }
         
         let urlRequest = configureUrlRequest(url: url, parameters: parameters, method: method)
-        printLogs(urlRequest.description)
         let task = session.dataTask(with: urlRequest, completionHandler: { [weak self] (data, response, error) in
             guard let strongSelf = self else { return }
             
@@ -64,9 +61,53 @@ extension RequestManager {
                 if let data = data, let jsonResponse = try? decoder.decode(ResponseObject.self, from: data) {
                     if let object = jsonResponse.payload as? T {
                         success(object)
+                    } else {
+                        failure(Constants.ServerError.jsonDecoding)
                     }
                 } else {
-                    failure(Constants.ServerError.JSONDecoding)
+                    failure(Constants.ServerError.jsonDecoding)
+                }
+            } else {
+                failure(Constants.ServerError.nilResponse)
+            }
+        })
+        task.resume()
+        
+        return task
+    }
+    
+    func requestObjects<T>(method: HTTPMethod = .get,
+                          baseURL: String,
+                          path: String,
+                          headers: Headers? = nil,
+                          parameters: Parameters? = nil,
+                          success: @escaping Success<T>,
+                          failure: @escaping Failure) -> URLSessionDataTask? {
+        guard let url = URL(string: "\(baseURL)\(path)") else {
+            print("Can't create URL for baseURL: \(baseURL) and path: \(path)")
+            return nil
+        }
+        
+        let urlRequest = configureUrlRequest(url: url, parameters: parameters, method: method)
+        let task = session.dataTask(with: urlRequest, completionHandler: { [weak self] (data, response, error) in
+            guard let strongSelf = self else { return }
+            
+            let decoder = JSONDecoder()
+            
+            if let error = error {
+                failure(error)
+            } else if let response = response, let httpResponse = response as? HTTPURLResponse,
+                ([Int](200..<300)).contains(where: { $0 == httpResponse.statusCode }) {
+                strongSelf.printLogs(response.description)
+                
+                if let data = data, let jsonResponse = try? decoder.decode(ResponseObject.self, from: data) {
+                    if let object = jsonResponse.payload as? T {
+                        success(object)
+                    } else {
+                        failure(Constants.ServerError.jsonDecoding)
+                    }
+                } else {
+                    failure(Constants.ServerError.jsonDecoding)
                 }
             } else {
                 failure(Constants.ServerError.nilResponse)
@@ -78,6 +119,7 @@ extension RequestManager {
     }
 }
 
+// MARK: - Private methods
 private extension RequestManager {
     func configure(parameters: Parameters) -> String {
         var components: [(String, String)] = []
@@ -95,6 +137,7 @@ private extension RequestManager {
         var urlRequest = URLRequest(url: url,
                                     cachePolicy: session.configuration.requestCachePolicy,
                                     timeoutInterval: session.configuration.timeoutIntervalForRequest)
+        urlRequest.httpMethod = method.rawValue
         
         if let parameters = parameters {
             switch method {
@@ -114,6 +157,8 @@ private extension RequestManager {
                 urlRequest.httpBody = parametersString.data(using: .utf8, allowLossyConversion: false)
             }
         }
+        
+        printLogs(urlRequest.description)
         
         return urlRequest
     }

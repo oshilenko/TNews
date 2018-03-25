@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - Private methods
 private extension AppDelegate {
     func configureRequestManager() {
-        RequestManager.shared.isPrintedLogs = true
+        RequestManager.isPrintedLogs = true
     }
 }
 

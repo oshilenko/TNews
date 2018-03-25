@@ -22,6 +22,10 @@
 		8831B52B206198B000731C34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8831B524206198B000731C34 /* LaunchScreen.storyboard */; };
 		8831B52C206198B000731C34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8831B526206198B000731C34 /* Main.storyboard */; };
 		8831B52F2061999700731C34 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8831B52E2061999700731C34 /* NewsViewController.swift */; };
+		8877984C20665E44006F1B8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877984B20665E44006F1B8E /* Constants.swift */; };
+		8877984E20666006006F1B8E /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877984D20666006006F1B8E /* RequestManager.swift */; };
+		88D9941A2068130400B96885 /* FeedLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D994192068130400B96885 /* FeedLoadService.swift */; };
+		88D9941D20682CC000B96885 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D9941C20682CC000B96885 /* ResponseObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		8831B525206198B000731C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8831B527206198B000731C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8831B52E2061999700731C34 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		8877984B20665E44006F1B8E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8877984D20666006006F1B8E /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		88D994192068130400B96885 /* FeedLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoadService.swift; sourceTree = "<group>"; };
+		88D9941C20682CC000B96885 /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +66,12 @@
 		880396A2206456790020FD3D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8877984B20665E44006F1B8E /* Constants.swift */,
 				880396A4206456790020FD3D /* Protocols */,
 				880396A5206456790020FD3D /* Helpers */,
+				88D9941B20682CB500B96885 /* Model */,
 				880396A3206456790020FD3D /* Views */,
+				8877984A20665D91006F1B8E /* Services */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -82,6 +93,7 @@
 		880396A5206456790020FD3D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8877984D20666006006F1B8E /* RequestManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -166,6 +178,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8877984A20665D91006F1B8E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				88D994192068130400B96885 /* FeedLoadService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		88D9941B20682CB500B96885 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88D9941C20682CC000B96885 /* ResponseObject.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,9 +273,13 @@
 				880396AB206456EE0020FD3D /* NewsInteractor.swift in Sources */,
 				8803969820644D8B0020FD3D /* FeedInteractor.swift in Sources */,
 				880396AD206458500020FD3D /* FeedRouter.swift in Sources */,
+				8877984C20665E44006F1B8E /* Constants.swift in Sources */,
+				88D9941D20682CC000B96885 /* ResponseObject.swift in Sources */,
 				8831B50D2061962B00731C34 /* Tinkoff_News.xcdatamodeld in Sources */,
+				88D9941A2068130400B96885 /* FeedLoadService.swift in Sources */,
 				8803969620644D780020FD3D /* FeedConfigurator.swift in Sources */,
 				880396A9206456E10020FD3D /* NewsPresenter.swift in Sources */,
+				8877984E20666006006F1B8E /* RequestManager.swift in Sources */,
 				8803969A20644D9C0020FD3D /* FeedPresenter.swift in Sources */,
 				8831B52F2061999700731C34 /* NewsViewController.swift in Sources */,
 			);
@@ -389,7 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tinkoff News/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shiko.Tinkoff-News";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiko.tinkoff.news;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,7 +435,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tinkoff News/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.shiko.Tinkoff-News";
+				PRODUCT_BUNDLE_IDENTIFIER = com.shiko.tinkoff.news;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -22,7 +22,7 @@ public enum StringItemType {
 // MARK: - StringCalculateHeightProtocol methods
 extension StringItemType: StringCalculateHeightProtocol {
     var font: UIFont {
-        return UIFont(name: "Helvetica Neue medium", size: 17)!
+        return UIFont(name: "HelveticaNeue-Medium", size: 17)!
     }
     
     var width: CGFloat {

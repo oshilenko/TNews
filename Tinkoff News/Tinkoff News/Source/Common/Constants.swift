@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     
@@ -34,6 +35,13 @@ struct Constants {
         // MARK: - News
         public struct News {
             static public let getNewsContent = "v1/news_content"
+        }
+    }
+    
+    public struct Cells {
+        public struct FeedItemCollectionViewCell {
+            static public let reuseIdentifier: String = "FeedItemCollectionViewCellID"
+            static public let nib: UINib = UINib(nibName: "FeedItemCollectionViewCell", bundle:nil)
         }
     }
     

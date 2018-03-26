@@ -39,7 +39,7 @@ class FeedItemCollectionViewCell: UICollectionViewCell {
 // MARK: - Public static methods
 extension FeedItemCollectionViewCell {
     static func size(for text: String) -> CGSize {
-        let constCellHeight: CGFloat = 20
+        let constCellHeight: CGFloat = 41
         let item: StringItemType = .feedItemTitle(text: text)
         let titleSize = item.size
         

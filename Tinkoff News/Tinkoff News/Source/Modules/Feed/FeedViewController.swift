@@ -11,9 +11,13 @@ import UIKit
 final class FeedViewController: UIViewController {
     // MARK: - Public variables
     var presenter: FeedPresenterInput!
+    var dataSource: FeedCollectionViewDataSource!
     
     // MARK: - Private variables
     private var configurator: FeedConfiguratorInput!
+    
+    // MARK: - IBOutlets
+    @IBOutlet fileprivate weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +34,14 @@ final class FeedViewController: UIViewController {
 
 // MARK: - FeedPresenterOutput methods
 extension FeedViewController: FeedPresenterOutput {
-    // TODO
+    func reloadCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
 }
 
+// MARK: - Private methods
 private extension FeedViewController {
     func setupConnection() {
         configurator = FeedConfigurator.create(controller: self)
@@ -41,7 +50,18 @@ private extension FeedViewController {
     }
     
     func configureViewController() {
-        // TODO
+        configureCollectionView()
+        registerCells()
+    }
+    
+    func configureCollectionView() {
+        collectionView.dataSource = dataSource
+        collectionView.delegate = dataSource
+    }
+    
+    func registerCells() {
+        collectionView.register(Constants.Cells.FeedItemCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: Constants.Cells.FeedItemCollectionViewCell.reuseIdentifier)
     }
 }
 

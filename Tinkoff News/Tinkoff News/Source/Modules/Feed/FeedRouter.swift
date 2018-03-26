@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FeedRouterInput {
-    // TODO
+    func openNewsContent(id: String)
 }
 
 final class FeedRouter: NSObject {
@@ -18,5 +18,7 @@ final class FeedRouter: NSObject {
 
 // MARK: - FeedRouterInput methods
 extension FeedRouter: FeedRouterInput {
-    // TODO
+    func openNewsContent(id: String) {
+        // TODO
+    }
 }

@@ -19,6 +19,7 @@ final class FeedConfigurator: NSObject {
     private let interactor: FeedInteractor = FeedInteractor()
     private let router:     FeedRouter     = FeedRouter()
     
+    private let dataSource: FeedCollectionViewDataSource = FeedCollectionViewDataSource()
     private let feedLoadService: FeedLoadService = FeedLoadService()
     
     private override init() {
@@ -46,12 +47,14 @@ extension FeedConfigurator: FeedConfiguratorInput {
 private extension FeedConfigurator {
     func configureController() {
         controller.presenter = presenter
+        controller.dataSource = dataSource
     }
     
     func configurePresenter() {
         presenter.interactor = interactor
         presenter.output     = controller
         presenter.router     = router
+        presenter.dataSource = dataSource
     }
     
     func configureInteractor() {
@@ -61,5 +64,9 @@ private extension FeedConfigurator {
     
     func configureFeedLoadService() {
         feedLoadService.output = interactor
+    }
+    
+    func configureCollectionViewDataSource() {
+        dataSource.output = presenter
     }
 }

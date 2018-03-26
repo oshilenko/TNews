@@ -13,7 +13,7 @@ protocol FeedPresenterInput {
 }
 
 protocol FeedPresenterOutput {
-    // TODO
+    func reloadCollectionView()
 }
 
 final class FeedPresenter: NSObject {
@@ -21,6 +21,7 @@ final class FeedPresenter: NSObject {
     var output:     FeedPresenterOutput!
     var interactor: FeedInteractorInput!
     var router:     FeedRouterInput!
+    var dataSource: FeedCollectionViewDataSourceInput!
 }
 
 // MARK: - FeedPresenterInput methods
@@ -32,5 +33,19 @@ extension FeedPresenter: FeedPresenterInput {
 
 // MARK: - FeedInteractorOutput methods
 extension FeedPresenter: FeedInteractorOutput {
-    // TODO
+    func didGetData(news: [FeedItemViewModel]) {
+        dataSource.set(viewModels: news)
+        output.reloadCollectionView()
+    }
+    
+    func didFailWith(error: Error?) {
+        // TODO
+    }
+}
+
+// MARK: - FeedCollectionViewDataSourceOutput methods
+extension FeedPresenter: FeedCollectionViewDataSourceOutput {
+    func didSelectItem(id: String) {
+        // TODO
+    }
 }

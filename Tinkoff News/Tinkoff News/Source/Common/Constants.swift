@@ -45,4 +45,8 @@ struct Constants {
         }
     }
     
+    public struct Colors {
+        static public let brandYellow: UIColor = UIColor(red: 255/256, green: 221/256, blue: 45/256, alpha: 1.0)
+    }
+    
 }

@@ -15,6 +15,7 @@ final class FeedViewController: UIViewController {
     
     // MARK: - Private variables
     private var configurator: FeedConfiguratorInput!
+    private var refreshControl: UIRefreshControl!
     
     // MARK: - IBOutlets
     @IBOutlet fileprivate weak var collectionView: UICollectionView!
@@ -34,6 +35,12 @@ final class FeedViewController: UIViewController {
 
 // MARK: - FeedPresenterOutput methods
 extension FeedViewController: FeedPresenterOutput {
+    func refreshControlDidEndActive() {
+        DispatchQueue.main.async { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
+    }
+    
     func reloadCollectionView() {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
@@ -50,6 +57,7 @@ private extension FeedViewController {
     }
     
     func configureViewController() {
+        configureRefreshControll()
         configureCollectionView()
         registerCells()
     }
@@ -57,6 +65,18 @@ private extension FeedViewController {
     func configureCollectionView() {
         collectionView.dataSource = dataSource
         collectionView.delegate = dataSource
+        collectionView.refreshControl = refreshControl
+    }
+    
+    func configureRefreshControll() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(beginRefresh), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = Constants.Colors.brandYellow
+    }
+    
+    
+    @objc func beginRefresh() {
+        presenter.refreshControllDidBeginActive()
     }
     
     func registerCells() {

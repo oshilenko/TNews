@@ -23,6 +23,7 @@ final class FeedItemViewModel {
 
 protocol FeedCollectionViewDataSourceInput {
     func set(viewModels: [FeedItemViewModel])
+    func append(viewModels: [FeedItemViewModel])
 }
 
 protocol FeedCollectionViewDataSourceOutput {
@@ -41,6 +42,10 @@ final class FeedCollectionViewDataSource: NSObject {
 extension FeedCollectionViewDataSource: FeedCollectionViewDataSourceInput {
     func set(viewModels: [FeedItemViewModel]) {
         self.viewModels = viewModels
+    }
+    
+    func append(viewModels: [FeedItemViewModel]) {
+        self.viewModels.append(contentsOf: viewModels)
     }
 }
 

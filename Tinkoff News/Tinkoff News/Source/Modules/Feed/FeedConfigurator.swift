@@ -40,6 +40,7 @@ extension FeedConfigurator: FeedConfiguratorInput {
         configurePresenter()
         configureInteractor()
         configureFeedLoadService()
+        configureCollectionViewDataSource()
     }
 }
 

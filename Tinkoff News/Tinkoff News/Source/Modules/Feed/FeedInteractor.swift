@@ -9,12 +9,15 @@
 import Foundation
 
 protocol FeedInteractorInput {
-    func getFeed(first: Int, last: Int)
+    func getFirstPage()
+    func getNextPage()
 }
 
 protocol FeedInteractorOutput {
-    func didGetData(news: [FeedItemViewModel])
-    func didFailWith(error: Error?)
+    func didGetFirstPage(news: [FeedItemViewModel])
+    func didGetNextPage(news: [FeedItemViewModel])
+    func didFailFirstPageWith(error: Error?)
+    func didFailNextPageWith(error: Error?)
 }
 
 final class FeedInteractor: NSObject {
@@ -23,26 +26,36 @@ final class FeedInteractor: NSObject {
     var feedLoadService: FeedLoadService!
     
     // MARK: - Fileprivate variables
+    fileprivate let pageCount: Int = 20
     fileprivate var news: [NewsShort] = []
 }
 
 // MARK: - FeedInteractorInput methods
 extension FeedInteractor: FeedInteractorInput {
-    func getFeed(first: Int, last: Int) {
-        feedLoadService.getFeedList(first: first, last: last)
+    func getFirstPage() {
+        news.removeAll()
+        feedLoadService.getFeedList(first: news.count, last: news.count + pageCount)
+    }
+    
+    func getNextPage() {
+        feedLoadService.getFeedList(first: news.count, last: news.count + pageCount)
     }
 }
 
 // MARK: - FeedLoadServiceOutput methods
 extension FeedInteractor: FeedLoadServiceOutput {
     func requestFinishedWithSuccess(success: [NewsShort]) {
-        news = success
-        let viewModels = convertToModels(news: news)
-        output.didGetData(news: viewModels)
+        let viewModels = convertToModels(news: success)
+        news.isEmpty
+            ? output.didGetFirstPage(news: viewModels)
+            : output.didGetNextPage(news: viewModels)
+        news.append(contentsOf: success)
     }
     
     func requestFinishedWithError(error: Error?) {
-        output.didFailWith(error: error)
+        news.isEmpty
+            ? output.didFailFirstPageWith(error: error)
+            : output.didFailNextPageWith(error: error)
     }
 }
 

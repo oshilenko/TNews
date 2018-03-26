@@ -10,10 +10,12 @@ import Foundation
 
 protocol FeedPresenterInput {
     func viewDidLoad()
+    func refreshControllDidBeginActive()
 }
 
 protocol FeedPresenterOutput {
     func reloadCollectionView()
+    func refreshControlDidEndActive()
 }
 
 final class FeedPresenter: NSObject {
@@ -26,19 +28,34 @@ final class FeedPresenter: NSObject {
 
 // MARK: - FeedPresenterInput methods
 extension FeedPresenter: FeedPresenterInput {
+    func refreshControllDidBeginActive() {
+        interactor.getFirstPage()
+    }
+    
     func viewDidLoad() {
-        interactor.getFeed(first: 0, last: 20)
+        interactor.getFirstPage()
     }
 }
 
 // MARK: - FeedInteractorOutput methods
 extension FeedPresenter: FeedInteractorOutput {
-    func didGetData(news: [FeedItemViewModel]) {
+    func didGetFirstPage(news: [FeedItemViewModel]) {
         dataSource.set(viewModels: news)
+        output.refreshControlDidEndActive()
         output.reloadCollectionView()
     }
     
-    func didFailWith(error: Error?) {
+    func didGetNextPage(news: [FeedItemViewModel]) {
+        dataSource.append(viewModels: news)
+        output.reloadCollectionView()
+    }
+    
+    func didFailFirstPageWith(error: Error?) {
+        output.refreshControlDidEndActive()
+        // TODO
+    }
+    
+    func didFailNextPageWith(error: Error?) {]
         // TODO
     }
 }

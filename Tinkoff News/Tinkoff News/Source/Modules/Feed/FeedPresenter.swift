@@ -55,7 +55,7 @@ extension FeedPresenter: FeedInteractorOutput {
         // TODO
     }
     
-    func didFailNextPageWith(error: Error?) {]
+    func didFailNextPageWith(error: Error?) {
         // TODO
     }
 }

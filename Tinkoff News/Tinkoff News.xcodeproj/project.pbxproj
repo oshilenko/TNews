@@ -37,6 +37,12 @@
 		88CC0E84206FB98D0055496D /* PagingItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E82206FB98D0055496D /* PagingItemCollectionViewCell.xib */; };
 		88CC0E8D206FEDB90055496D /* EmptyStateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E8B206FEDB90055496D /* EmptyStateCollectionViewCell.swift */; };
 		88CC0E8E206FEDB90055496D /* EmptyStateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E8C206FEDB90055496D /* EmptyStateCollectionViewCell.xib */; };
+		88CC0E94207026000055496D /* ContentItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E92207026000055496D /* ContentItemCollectionViewCell.swift */; };
+		88CC0E95207026000055496D /* ContentItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E93207026000055496D /* ContentItemCollectionViewCell.xib */; };
+		88CC0E98207026130055496D /* DateItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E96207026130055496D /* DateItemCollectionViewCell.swift */; };
+		88CC0E99207026130055496D /* DateItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E97207026130055496D /* DateItemCollectionViewCell.xib */; };
+		88CC0E9C207026260055496D /* HeaderItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E9A207026260055496D /* HeaderItemCollectionViewCell.swift */; };
+		88CC0E9D207026260055496D /* HeaderItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E9B207026260055496D /* HeaderItemCollectionViewCell.xib */; };
 		88D9941A2068130400B96885 /* FeedLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D994192068130400B96885 /* FeedLoadService.swift */; };
 		88D9941D20682CC000B96885 /* ResponseObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D9941C20682CC000B96885 /* ResponseObjects.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +80,12 @@
 		88CC0E82206FB98D0055496D /* PagingItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PagingItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		88CC0E8B206FEDB90055496D /* EmptyStateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateCollectionViewCell.swift; sourceTree = "<group>"; };
 		88CC0E8C206FEDB90055496D /* EmptyStateCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateCollectionViewCell.xib; sourceTree = "<group>"; };
+		88CC0E92207026000055496D /* ContentItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		88CC0E93207026000055496D /* ContentItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		88CC0E96207026130055496D /* DateItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		88CC0E97207026130055496D /* DateItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		88CC0E9A207026260055496D /* HeaderItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		88CC0E9B207026260055496D /* HeaderItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		88D994192068130400B96885 /* FeedLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoadService.swift; sourceTree = "<group>"; };
 		88D9941C20682CC000B96885 /* ResponseObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObjects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,6 +233,9 @@
 		8836ECBF2069868600D710D2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				88CC0E90207025EF0055496D /* ContentItem */,
+				88CC0E91207025EF0055496D /* DatesItem */,
+				88CC0E8F207025EF0055496D /* HeaderItem */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +274,33 @@
 				88CC0E8C206FEDB90055496D /* EmptyStateCollectionViewCell.xib */,
 			);
 			path = EmptyStateItem;
+			sourceTree = "<group>";
+		};
+		88CC0E8F207025EF0055496D /* HeaderItem */ = {
+			isa = PBXGroup;
+			children = (
+				88CC0E9A207026260055496D /* HeaderItemCollectionViewCell.swift */,
+				88CC0E9B207026260055496D /* HeaderItemCollectionViewCell.xib */,
+			);
+			path = HeaderItem;
+			sourceTree = "<group>";
+		};
+		88CC0E90207025EF0055496D /* ContentItem */ = {
+			isa = PBXGroup;
+			children = (
+				88CC0E92207026000055496D /* ContentItemCollectionViewCell.swift */,
+				88CC0E93207026000055496D /* ContentItemCollectionViewCell.xib */,
+			);
+			path = ContentItem;
+			sourceTree = "<group>";
+		};
+		88CC0E91207025EF0055496D /* DatesItem */ = {
+			isa = PBXGroup;
+			children = (
+				88CC0E96207026130055496D /* DateItemCollectionViewCell.swift */,
+				88CC0E97207026130055496D /* DateItemCollectionViewCell.xib */,
+			);
+			path = DatesItem;
 			sourceTree = "<group>";
 		};
 		88D9941B20682CB500B96885 /* Model */ = {
@@ -333,11 +375,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8831B52C206198B000731C34 /* Main.storyboard in Resources */,
+				88CC0E95207026000055496D /* ContentItemCollectionViewCell.xib in Resources */,
 				8836ECC32069871500D710D2 /* FeedItemCollectionViewCell.xib in Resources */,
+				88CC0E99207026130055496D /* DateItemCollectionViewCell.xib in Resources */,
 				8831B52A206198B000731C34 /* Assets.xcassets in Resources */,
 				88CC0E84206FB98D0055496D /* PagingItemCollectionViewCell.xib in Resources */,
 				88CC0E8E206FEDB90055496D /* EmptyStateCollectionViewCell.xib in Resources */,
 				8831B52B206198B000731C34 /* LaunchScreen.storyboard in Resources */,
+				88CC0E9D207026260055496D /* HeaderItemCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +395,7 @@
 			files = (
 				8831B528206198B000731C34 /* AppDelegate.swift in Sources */,
 				880396AF2064592A0020FD3D /* NewsRouter.swift in Sources */,
+				88CC0E98207026130055496D /* DateItemCollectionViewCell.swift in Sources */,
 				880396A7206456D40020FD3D /* NewsConfigurator.swift in Sources */,
 				8836ECC520698BA600D710D2 /* StringCalculateHeightProtocol.swift in Sources */,
 				8831B529206198B000731C34 /* FeedViewController.swift in Sources */,
@@ -363,7 +409,9 @@
 				88CC0E8D206FEDB90055496D /* EmptyStateCollectionViewCell.swift in Sources */,
 				8831B50D2061962B00731C34 /* Tinkoff_News.xcdatamodeld in Sources */,
 				88D9941A2068130400B96885 /* FeedLoadService.swift in Sources */,
+				88CC0E94207026000055496D /* ContentItemCollectionViewCell.swift in Sources */,
 				8803969620644D780020FD3D /* FeedConfigurator.swift in Sources */,
+				88CC0E9C207026260055496D /* HeaderItemCollectionViewCell.swift in Sources */,
 				8836ECC7206990BF00D710D2 /* FeedCollectionViewDataSource.swift in Sources */,
 				880396A9206456E10020FD3D /* NewsPresenter.swift in Sources */,
 				8877984E20666006006F1B8E /* RequestManager.swift in Sources */,

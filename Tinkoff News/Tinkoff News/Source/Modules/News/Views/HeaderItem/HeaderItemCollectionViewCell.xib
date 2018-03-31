@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderItemCollectionViewCellID" id="gTV-IL-0wX" customClass="HeaderItemCollectionViewCell" customModule="Tinkoff_News" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGm-gX-1GH">
+                        <rect key="frame" x="272" y="10" width="32" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="z3B-hB-eJT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                        <color key="textColor" red="0.56768876310000005" green="0.59554249049999997" blue="0.63298529390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIe-bk-Rdn">
+                        <rect key="frame" x="16" y="30" width="288" height="25"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="21"/>
+                        <color key="textColor" red="0.25070032141944448" green="0.35087260271944448" blue="0.41159503988888879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="EIe-bk-Rdn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="8wP-gP-8BH"/>
+                <constraint firstAttribute="trailing" secondItem="EGm-gX-1GH" secondAttribute="trailing" constant="16" id="Kfn-aC-ELg"/>
+                <constraint firstItem="EIe-bk-Rdn" firstAttribute="top" secondItem="EGm-gX-1GH" secondAttribute="bottom" constant="5" id="YbE-xX-qhW"/>
+                <constraint firstAttribute="trailing" secondItem="EIe-bk-Rdn" secondAttribute="trailing" constant="16" id="fNj-Nx-6OC"/>
+                <constraint firstItem="EGm-gX-1GH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="ntC-eO-Mxz"/>
+                <constraint firstAttribute="bottom" secondItem="EIe-bk-Rdn" secondAttribute="bottom" constant="10" id="p20-IV-ThB"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="320" height="66"/>
+            <connections>
+                <outlet property="dateLabel" destination="EGm-gX-1GH" id="qNc-Ug-YB3"/>
+                <outlet property="titleLabel" destination="EIe-bk-Rdn" id="hHz-5k-rvp"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="72"/>
+        </collectionViewCell>
+    </objects>
+</document>

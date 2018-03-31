@@ -17,21 +17,33 @@ protocol StringCalculateHeightProtocol {
 
 public enum StringItemType {
     case feedItemTitle(text: String)
+    case newsHeaderItemTitle(text: String)
 }
 
 // MARK: - StringCalculateHeightProtocol methods
 extension StringItemType: StringCalculateHeightProtocol {
     var font: UIFont {
-        return UIFont(name: "HelveticaNeue-Medium", size: 17)!
+        switch self {
+        case .feedItemTitle:
+            return UIFont(name: "HelveticaNeue-Medium", size: 17)!
+        case .newsHeaderItemTitle:
+            return UIFont(name: "HelveticaNeue-Medium", size: 21)!
+        }
     }
     
     var width: CGFloat {
-        return UIScreen.main.bounds.size.width - 32
+        switch self {
+        case .feedItemTitle:
+            return UIScreen.main.bounds.size.width - 32
+        case .newsHeaderItemTitle:
+            return UIScreen.main.bounds.size.width - 32
+        }
     }
     
     var size: CGSize {
         switch self {
-        case .feedItemTitle(let text):
+        case .feedItemTitle(let text),
+             .newsHeaderItemTitle(let text):
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineBreakMode = .byWordWrapping
             

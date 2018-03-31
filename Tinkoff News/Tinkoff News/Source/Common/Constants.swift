@@ -63,6 +63,22 @@ struct Constants {
             static public let reuseIdentifier: String = "EmptyStateCollectionViewCellID"
             static public let nib: UINib = UINib(nibName: "EmptyStateCollectionViewCell", bundle: nil)
         }
+        
+        public struct HeaderItemCollectionViewCell {
+            static public let reuseIdentifier: String = "HeaderItemCollectionViewCellID"
+            static public let nib: UINib = UINib(nibName: "HeaderItemCollectionViewCell", bundle: nil)
+        }
+        
+        public struct DateItemCollectionViewCell {
+            static public let reuseIdentifier: String = "DateItemCollectionViewCellID"
+            static public let nib: UINib = UINib(nibName: "DateItemCollectionViewCell", bundle: nil)
+            static public let height: CGFloat = 54
+        }
+        
+        public struct ContentItemCollectionViewCell {
+            static public let reuseIdentifier: String = "ContentItemCollectionViewCellID"
+            static public let nib: UINib = UINib(nibName: "ContentItemCollectionViewCell", bundle: nil)
+        }
     }
     
     public struct Colors {

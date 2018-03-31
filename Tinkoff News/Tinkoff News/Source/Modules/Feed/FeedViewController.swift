@@ -82,6 +82,8 @@ private extension FeedViewController {
     func registerCells() {
         collectionView.register(Constants.Cells.FeedItemCollectionViewCell.nib,
                                 forCellWithReuseIdentifier: Constants.Cells.FeedItemCollectionViewCell.reuseIdentifier)
+        collectionView.register(Constants.Cells.PagingItemCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: Constants.Cells.PagingItemCollectionViewCell.reuseIdentifier)
     }
 }
 

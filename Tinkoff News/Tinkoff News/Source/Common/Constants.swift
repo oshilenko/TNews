@@ -41,7 +41,12 @@ struct Constants {
     public struct Cells {
         public struct FeedItemCollectionViewCell {
             static public let reuseIdentifier: String = "FeedItemCollectionViewCellID"
-            static public let nib: UINib = UINib(nibName: "FeedItemCollectionViewCell", bundle:nil)
+            static public let nib: UINib = UINib(nibName: "FeedItemCollectionViewCell", bundle: nil)
+        }
+        
+        public struct PagingItemCollectionViewCell {
+            static public let reuseIdentifier: String = "PagingItemCollectionViewCellID"
+            static public let nib: UINib = UINib(nibName: "PagingItemCollectionViewCell", bundle: nil)
         }
     }
     

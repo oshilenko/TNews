@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum FeedPresentedItems {
+    case item
+    case indicator
+}
+
 protocol FeedPresenterInput {
     func viewDidLoad()
     func refreshControllDidBeginActive()
@@ -24,6 +29,9 @@ final class FeedPresenter: NSObject {
     var interactor: FeedInteractorInput!
     var router:     FeedRouterInput!
     var dataSource: FeedCollectionViewDataSourceInput!
+    
+    // MARK: - Fileprivate variables
+    fileprivate var presentedItems: [FeedPresentedItems] = []
 }
 
 // MARK: - FeedPresenterInput methods
@@ -40,23 +48,36 @@ extension FeedPresenter: FeedPresenterInput {
 // MARK: - FeedInteractorOutput methods
 extension FeedPresenter: FeedInteractorOutput {
     func didGetFirstPage(news: [FeedItemViewModel]) {
+        presentedItems = []
+        presentedItems = news.flatMap({ _ in return .item })
+        presentedItems.append(.indicator)
+        
+        dataSource.set(presentedItems: presentedItems)
         dataSource.set(viewModels: news)
+        
         output.refreshControlDidEndActive()
         output.reloadCollectionView()
     }
     
     func didGetNextPage(news: [FeedItemViewModel]) {
+        presentedItems = presentedItems.flatMap({ return $0 == .indicator ? nil : $0 })
+        presentedItems.append(contentsOf: news.flatMap({ _ in return .item }))
+        presentedItems.append(.indicator)
+        
+        dataSource.set(presentedItems: presentedItems)
         dataSource.append(viewModels: news)
+        
         output.reloadCollectionView()
     }
     
     func didFailFirstPageWith(error: Error?) {
+        presentedItems = []
         output.refreshControlDidEndActive()
-        // TODO
+        // TODO: error
     }
     
     func didFailNextPageWith(error: Error?) {
-        // TODO
+        // TODO: remove indicator, scroll to last item
     }
 }
 
@@ -64,5 +85,9 @@ extension FeedPresenter: FeedInteractorOutput {
 extension FeedPresenter: FeedCollectionViewDataSourceOutput {
     func didSelectItem(id: String) {
         // TODO
+    }
+    
+    func pagingIndicatorWillDisplay() {
+        interactor.getNextPage()
     }
 }

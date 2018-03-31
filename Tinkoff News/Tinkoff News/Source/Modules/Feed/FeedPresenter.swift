@@ -11,6 +11,7 @@ import Foundation
 enum FeedPresentedItems {
     case item
     case indicator
+    case emptyState
 }
 
 protocol FeedPresenterInput {
@@ -22,6 +23,7 @@ protocol FeedPresenterOutput {
     func reloadCollectionView()
     func refreshControlDidEndActive()
     func updateCollectionViewItems(deleted: [IndexPath]?, inserted: [IndexPath]?, reload: [IndexPath]?)
+    func scrollToTop(indexPath: IndexPath)
 }
 
 final class FeedPresenter: NSObject {
@@ -78,20 +80,26 @@ extension FeedPresenter: FeedInteractorOutput {
     }
     
     func didFailFirstPageWith(error: Error?) {
-        presentedItems = []
+        presentedItems = [.emptyState]
+        
+        dataSource.set(viewModels: [])
+        dataSource.set(presentedItems: presentedItems)
+        
         output.refreshControlDidEndActive()
-        // TODO: error
+        output.reloadCollectionView()
     }
     
     func didFailNextPageWith(error: Error?) {
-        // TODO: remove indicator, scroll to last item
+        guard let pagingIndex = dataSource.getLastItemIndexPath()?.first else { return }
+        
+        output.scrollToTop(indexPath: pagingIndex)
     }
 }
 
 // MARK: - FeedCollectionViewDataSourceOutput methods
 extension FeedPresenter: FeedCollectionViewDataSourceOutput {
     func didSelectItem(id: String) {
-        // TODO
+        // TODO: router
     }
     
     func pagingIndicatorWillDisplay() {

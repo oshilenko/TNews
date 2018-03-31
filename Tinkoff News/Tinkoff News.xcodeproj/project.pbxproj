@@ -35,6 +35,8 @@
 		8877984E20666006006F1B8E /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8877984D20666006006F1B8E /* RequestManager.swift */; };
 		88CC0E83206FB98D0055496D /* PagingItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E81206FB98D0055496D /* PagingItemCollectionViewCell.swift */; };
 		88CC0E84206FB98D0055496D /* PagingItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E82206FB98D0055496D /* PagingItemCollectionViewCell.xib */; };
+		88CC0E8D206FEDB90055496D /* EmptyStateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E8B206FEDB90055496D /* EmptyStateCollectionViewCell.swift */; };
+		88CC0E8E206FEDB90055496D /* EmptyStateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E8C206FEDB90055496D /* EmptyStateCollectionViewCell.xib */; };
 		88D9941A2068130400B96885 /* FeedLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D994192068130400B96885 /* FeedLoadService.swift */; };
 		88D9941D20682CC000B96885 /* ResponseObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D9941C20682CC000B96885 /* ResponseObjects.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		8877984D20666006006F1B8E /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		88CC0E81206FB98D0055496D /* PagingItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		88CC0E82206FB98D0055496D /* PagingItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PagingItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		88CC0E8B206FEDB90055496D /* EmptyStateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateCollectionViewCell.swift; sourceTree = "<group>"; };
+		88CC0E8C206FEDB90055496D /* EmptyStateCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateCollectionViewCell.xib; sourceTree = "<group>"; };
 		88D994192068130400B96885 /* FeedLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoadService.swift; sourceTree = "<group>"; };
 		88D9941C20682CC000B96885 /* ResponseObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObjects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +213,7 @@
 			children = (
 				88CC0E7B206FB5F50055496D /* FeedItem */,
 				88CC0E80206FB6550055496D /* PagingItem */,
+				88CC0E8A206FEDA50055496D /* EmptyStateItem */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +250,15 @@
 				88CC0E82206FB98D0055496D /* PagingItemCollectionViewCell.xib */,
 			);
 			path = PagingItem;
+			sourceTree = "<group>";
+		};
+		88CC0E8A206FEDA50055496D /* EmptyStateItem */ = {
+			isa = PBXGroup;
+			children = (
+				88CC0E8B206FEDB90055496D /* EmptyStateCollectionViewCell.swift */,
+				88CC0E8C206FEDB90055496D /* EmptyStateCollectionViewCell.xib */,
+			);
+			path = EmptyStateItem;
 			sourceTree = "<group>";
 		};
 		88D9941B20682CB500B96885 /* Model */ = {
@@ -322,6 +336,7 @@
 				8836ECC32069871500D710D2 /* FeedItemCollectionViewCell.xib in Resources */,
 				8831B52A206198B000731C34 /* Assets.xcassets in Resources */,
 				88CC0E84206FB98D0055496D /* PagingItemCollectionViewCell.xib in Resources */,
+				88CC0E8E206FEDB90055496D /* EmptyStateCollectionViewCell.xib in Resources */,
 				8831B52B206198B000731C34 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +360,7 @@
 				8877984C20665E44006F1B8E /* Constants.swift in Sources */,
 				88D9941D20682CC000B96885 /* ResponseObjects.swift in Sources */,
 				8836ECC22069871500D710D2 /* FeedItemCollectionViewCell.swift in Sources */,
+				88CC0E8D206FEDB90055496D /* EmptyStateCollectionViewCell.swift in Sources */,
 				8831B50D2061962B00731C34 /* Tinkoff_News.xcdatamodeld in Sources */,
 				88D9941A2068130400B96885 /* FeedLoadService.swift in Sources */,
 				8803969620644D780020FD3D /* FeedConfigurator.swift in Sources */,

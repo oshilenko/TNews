@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 struct Constants {
+    public struct Sizes {
+        static public let navigationBarHeight: CGFloat = 64
+    }
     
     public struct ServerError {
         static public let unknown = NSError(domain: "unknown", code: 0)
@@ -47,6 +50,12 @@ struct Constants {
         public struct PagingItemCollectionViewCell {
             static public let reuseIdentifier: String = "PagingItemCollectionViewCellID"
             static public let nib: UINib = UINib(nibName: "PagingItemCollectionViewCell", bundle: nil)
+            static public let height: CGFloat = 50
+        }
+        
+        public struct EmptyStateCollectionViewCell {
+            static public let reuseIdentifier: String = "EmptyStateCollectionViewCellID"
+            static public let nib: UINib = UINib(nibName: "EmptyStateCollectionViewCell", bundle: nil)
         }
     }
     

@@ -26,6 +26,7 @@ protocol FeedCollectionViewDataSourceInput {
     func set(presentedItems: [FeedPresentedItems])
     func append(viewModels: [FeedItemViewModel])
     func getIndexPath(for items: [FeedItemViewModel]) -> [IndexPath]
+    func getLastItemIndexPath() -> [IndexPath]?
     func getPagingItemIndex() -> [IndexPath]?
 }
 
@@ -76,6 +77,12 @@ extension FeedCollectionViewDataSource: FeedCollectionViewDataSourceInput {
         
         return [IndexPath(item: index, section: 0)]
     }
+    
+    func getLastItemIndexPath() -> [IndexPath]? {
+        guard presentedItems.count > 1 else { return nil }
+        
+        return [IndexPath(item: presentedItems.count - 2, section: 0)]
+    }
 }
 
 // MARK: - UICollectionViewDataSource methods
@@ -100,6 +107,11 @@ extension FeedCollectionViewDataSource: UICollectionViewDataSource {
                 .dequeueReusableCell(withReuseIdentifier: Constants.Cells.PagingItemCollectionViewCell.reuseIdentifier,
                                      for: indexPath)
             return cell
+        case .emptyState:
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: Constants.Cells.EmptyStateCollectionViewCell.reuseIdentifier,
+                                     for: indexPath)
+            return cell
         }
     }
     
@@ -112,6 +124,7 @@ extension FeedCollectionViewDataSource: UICollectionViewDataSource {
             cell.title = viewModels[indexPath.item].title
         case .indicator:
             output.pagingIndicatorWillDisplay()
+        case .emptyState:
             break
         }
     }
@@ -127,6 +140,8 @@ extension FeedCollectionViewDataSource: UICollectionViewDelegateFlowLayout {
             return FeedItemCollectionViewCell.size(for: title)
         case .indicator:
             return PagingItemCollectionViewCell.size()
+        case .emptyState:
+            return EmptyStateCollectionViewCell.size()
         }
     }
 }
@@ -138,6 +153,8 @@ extension FeedCollectionViewDataSource: UICollectionViewDelegate {
         case .item:
             output.didSelectItem(id: viewModels[indexPath.item].id)
         case .indicator:
+            break
+        case .emptyState:
             break
         }
     }

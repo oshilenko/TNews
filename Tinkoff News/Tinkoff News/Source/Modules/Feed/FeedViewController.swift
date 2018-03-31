@@ -50,20 +50,16 @@ extension FeedViewController: FeedPresenterOutput {
     func updateCollectionViewItems(deleted: [IndexPath]?, inserted: [IndexPath]?, reload: [IndexPath]?) {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.performBatchUpdates({
-                if let deleted = deleted {
-                    self?.collectionView.deleteItems(at: deleted)
-                }
-                
-                if let inserted = inserted {
-                    self?.collectionView.insertItems(at: inserted)
-                }
-                
-                if let reload = reload {
-                    self?.collectionView.reloadItems(at: reload)
-                }
-            }) { (completed) in
-                print("success")
-            }
+                self?.collectionView.deleteItems(at: deleted ?? [])
+                self?.collectionView.insertItems(at: inserted ?? [])
+                self?.collectionView.reloadItems(at: reload ?? [])
+            }, completion: nil)
+        }
+    }
+    
+    func scrollToTop(indexPath: IndexPath) {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         }
     }
 }
@@ -104,6 +100,8 @@ private extension FeedViewController {
                                 forCellWithReuseIdentifier: Constants.Cells.FeedItemCollectionViewCell.reuseIdentifier)
         collectionView.register(Constants.Cells.PagingItemCollectionViewCell.nib,
                                 forCellWithReuseIdentifier: Constants.Cells.PagingItemCollectionViewCell.reuseIdentifier)
+        collectionView.register(Constants.Cells.EmptyStateCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: Constants.Cells.EmptyStateCollectionViewCell.reuseIdentifier)
     }
 }
 

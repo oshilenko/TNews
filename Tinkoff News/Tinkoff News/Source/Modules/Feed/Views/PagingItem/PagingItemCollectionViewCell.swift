@@ -23,6 +23,6 @@ class PagingItemCollectionViewCell: UICollectionViewCell {
 // MARK: - Public methods
 extension PagingItemCollectionViewCell {
     static func size() -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 50)
+        return CGSize(width: UIScreen.main.bounds.width, height: Constants.Cells.PagingItemCollectionViewCell.height)
     }
 }

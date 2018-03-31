@@ -65,20 +65,31 @@ fileprivate extension FeedInteractor {
         
         news.forEach { (news) in
             if let id = news.id {
-                var dateString: String?
-                
-                if var timeInterval = news.publicationDate?.milliseconds {
-                    timeInterval = timeInterval / 1000
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "MM.dd.yyyy HH:mm:ss"
-                    let date = Date(timeIntervalSince1970: TimeInterval(timeInterval))
-                    dateString = dateFormatter.string(from: date)
-                }
-                
+                let milliseconds = news.publicationDate?.milliseconds
+                let dateString: String? = configureDateString(milliseconds: milliseconds, with: "dd MMMM yyyy")
                 viewModels.append(FeedItemViewModel(id: id, title: news.text, date: dateString))
             }
         }
         
         return viewModels
+    }
+    
+    func configureDateString(milliseconds: Int?, with format: String) -> String? {
+        guard let milliseconds = milliseconds else { return nil }
+        
+        let timeInterval = milliseconds / 1000
+        let date = Date(timeIntervalSince1970: TimeInterval(timeInterval))
+        let dateFormatter = DateFormatter()
+        var locale = Locale.current
+        
+        if let language = Locale.preferredLanguages.first {
+            let preferedLocale = Locale(identifier: language)
+            locale = preferedLocale
+        }
+        
+        dateFormatter.locale = locale
+        dateFormatter.dateFormat = format
+        
+        return dateFormatter.string(from: date)
     }
 }

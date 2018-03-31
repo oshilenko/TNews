@@ -45,6 +45,12 @@ extension FeedInteractor: FeedInteractorInput {
 // MARK: - FeedLoadServiceOutput methods
 extension FeedInteractor: FeedLoadServiceOutput {
     func requestFinishedWithSuccess(success: [NewsShort]) {
+        if success.isEmpty {
+            news.isEmpty
+                ? output.didFailFirstPageWith(error: Constants.ServerError.emptyData)
+                : output.didFailNextPageWith(error: Constants.ServerError.unknown)
+        }
+        
         let viewModels = convertToModels(news: success)
         news.isEmpty
             ? output.didGetFirstPage(news: viewModels)

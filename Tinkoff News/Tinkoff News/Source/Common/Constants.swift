@@ -14,11 +14,17 @@ struct Constants {
         static public let navigationBarHeight: CGFloat = 64
     }
     
+    public struct ServerErrorDescription {
+        static public let unknown = "Что-то пошло не так, попробуйте повторить это действие позже"
+        static public let noInternetConnection = "Не удалось загрузить новости, отсутсвует интернет соединение"
+        static public let emptyData = "Ой, новости на сегодня закончились"
+    }
+    
     public struct ServerError {
         static public let unknown = NSError(domain: "unknown", code: 0)
         static public let jsonDecoding = NSError(domain: "JSONDecodingError", code: 0)
         static public let nilResponse = NSError(domain: "NilResponse", code: 0)
-        static public let noInternetConnection = NSError(domain: "NoInternetConnection", code: 0)
+        static public let emptyData = NSError(domain: "EmptyData", code: 0)
     }
     
     public struct Session {

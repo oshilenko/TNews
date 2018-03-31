@@ -8,10 +8,22 @@
 
 import Foundation
 
-enum FeedPresentedItems {
+enum FeedPresentedItems: Equatable {
     case item
     case indicator
-    case emptyState
+    case emptyState(text: String)
+}
+
+func ==(lhs: FeedPresentedItems, rhs: FeedPresentedItems) -> Bool {
+    switch (lhs, rhs) {
+    case (.item, .item),
+         (.indicator, .indicator):
+        return true
+    case (.emptyState(let a), .emptyState(let b)):
+        return a == b
+    default:
+        return false
+    }
 }
 
 protocol FeedPresenterInput {
@@ -80,7 +92,17 @@ extension FeedPresenter: FeedInteractorOutput {
     }
     
     func didFailFirstPageWith(error: Error?) {
-        presentedItems = [.emptyState]
+        var emptyStateString = Constants.ServerErrorDescription.unknown
+        
+        if let error = error {
+            if error._code == NSURLErrorNetworkConnectionLost || error._code == NSURLErrorTimedOut {
+               emptyStateString = Constants.ServerErrorDescription.noInternetConnection
+            } else if error._domain == Constants.ServerError.emptyData.domain {
+                emptyStateString = Constants.ServerErrorDescription.emptyData
+            }
+        }
+        
+        presentedItems = [.emptyState(text: emptyStateString)]
         
         dataSource.set(viewModels: [])
         dataSource.set(presentedItems: presentedItems)

@@ -10,6 +10,14 @@ import UIKit
 
 class EmptyStateCollectionViewCell: UICollectionViewCell {
 
+    var text: String! {
+        didSet {
+            textLabel.text = text
+        }
+    }
+    
+    @IBOutlet fileprivate weak var textLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

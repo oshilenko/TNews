@@ -124,8 +124,10 @@ extension FeedCollectionViewDataSource: UICollectionViewDataSource {
             cell.title = viewModels[indexPath.item].title
         case .indicator:
             output.pagingIndicatorWillDisplay()
-        case .emptyState:
-            break
+        case .emptyState(let text):
+            guard let cell = cell as? EmptyStateCollectionViewCell else { return }
+            
+            cell.text = text
         }
     }
 }

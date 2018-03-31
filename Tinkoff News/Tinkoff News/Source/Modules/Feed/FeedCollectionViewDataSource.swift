@@ -25,6 +25,8 @@ protocol FeedCollectionViewDataSourceInput {
     func set(viewModels: [FeedItemViewModel])
     func set(presentedItems: [FeedPresentedItems])
     func append(viewModels: [FeedItemViewModel])
+    func getIndexPath(for items: [FeedItemViewModel]) -> [IndexPath]
+    func getPagingItemIndex() -> [IndexPath]?
 }
 
 protocol FeedCollectionViewDataSourceOutput {
@@ -53,6 +55,26 @@ extension FeedCollectionViewDataSource: FeedCollectionViewDataSourceInput {
     
     func append(viewModels: [FeedItemViewModel]) {
         self.viewModels.append(contentsOf: viewModels)
+    }
+    
+    func getIndexPath(for items: [FeedItemViewModel]) -> [IndexPath] {
+        var index: Int = 0
+        var indexPaths: [IndexPath] = []
+        
+        viewModels.forEach { (model) in
+            if items.contains(where: { $0.id == model.id }) {
+                indexPaths.append(IndexPath(item: index, section: 0))
+            }
+            index += 1
+        }
+        
+        return indexPaths
+    }
+    
+    func getPagingItemIndex() -> [IndexPath]? {
+        guard let index = presentedItems.index(where: { $0 == .indicator }) else { return nil }
+        
+        return [IndexPath(item: index, section: 0)]
     }
 }
 

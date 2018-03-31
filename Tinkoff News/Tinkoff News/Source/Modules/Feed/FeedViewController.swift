@@ -46,6 +46,26 @@ extension FeedViewController: FeedPresenterOutput {
             self?.collectionView.reloadData()
         }
     }
+    
+    func updateCollectionViewItems(deleted: [IndexPath]?, inserted: [IndexPath]?, reload: [IndexPath]?) {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.performBatchUpdates({
+                if let deleted = deleted {
+                    self?.collectionView.deleteItems(at: deleted)
+                }
+                
+                if let inserted = inserted {
+                    self?.collectionView.insertItems(at: inserted)
+                }
+                
+                if let reload = reload {
+                    self?.collectionView.reloadItems(at: reload)
+                }
+            }) { (completed) in
+                print("success")
+            }
+        }
+    }
 }
 
 // MARK: - Private methods

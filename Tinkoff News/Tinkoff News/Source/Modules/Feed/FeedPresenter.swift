@@ -21,6 +21,7 @@ protocol FeedPresenterInput {
 protocol FeedPresenterOutput {
     func reloadCollectionView()
     func refreshControlDidEndActive()
+    func updateCollectionViewItems(deleted: [IndexPath]?, inserted: [IndexPath]?, reload: [IndexPath]?)
 }
 
 final class FeedPresenter: NSObject {
@@ -60,14 +61,20 @@ extension FeedPresenter: FeedInteractorOutput {
     }
     
     func didGetNextPage(news: [FeedItemViewModel]) {
+        let deleted = dataSource.getPagingItemIndex()
         presentedItems = presentedItems.flatMap({ return $0 == .indicator ? nil : $0 })
         presentedItems.append(contentsOf: news.flatMap({ _ in return .item }))
         presentedItems.append(.indicator)
         
         dataSource.set(presentedItems: presentedItems)
         dataSource.append(viewModels: news)
+        var inserted = dataSource.getIndexPath(for: news)
         
-        output.reloadCollectionView()
+        if let pagingIndexPath = dataSource.getPagingItemIndex()?.first {
+            inserted.append(pagingIndexPath)
+        }
+        
+        output.updateCollectionViewItems(deleted: deleted, inserted: inserted, reload: nil)
     }
     
     func didFailFirstPageWith(error: Error?) {

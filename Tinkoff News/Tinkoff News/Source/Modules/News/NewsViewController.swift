@@ -10,11 +10,17 @@ import UIKit
 
 final class NewsViewController: UIViewController {
     // MARK: - Public variables
+    var id: String!
     var presenter: NewsPresenterInput!
+    var dataSource: NewsCollectionViewDataSource!
     
     // MARK: - Private variables
     private var configurator: NewsConfiguratorInput!
     
+    // MARK: - IBOutlets
+    @IBOutlet fileprivate weak var collectionView: UICollectionView!
+    
+    // MARK: - Public methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,17 +36,48 @@ final class NewsViewController: UIViewController {
 
 // MARK: - NewsPresenterOutput methods
 extension NewsViewController: NewsPresenterOutput {
-    // TODO
+    func reloadCollectionView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
 }
 
+// MARK: - Fileprivate methods
 private extension NewsViewController {
     func setupConnection() {
         configurator = NewsConfigurator.create(controller: self)
         configurator.configureConnection()
+        presenter.viewDidLoad()
     }
     
     func configureViewController() {
-        // TODO
+        configureCollectionView()
+        registerCells()
+    }
+    
+    func configureCollectionView() {
+        collectionView.dataSource = dataSource
+        collectionView.delegate = dataSource
+    }
+    
+    func registerCells() {
+        collectionView.register(Constants.Cells.HeaderItemCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: Constants.Cells.HeaderItemCollectionViewCell.reuseIdentifier)
+        collectionView.register(Constants.Cells.DateItemCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: Constants.Cells.DateItemCollectionViewCell.reuseIdentifier)
+        collectionView.register(Constants.Cells.ContentItemCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: Constants.Cells.ContentItemCollectionViewCell.reuseIdentifier)
+    }
+}
+
+extension NewsViewController {
+    static func create(id: String) -> NewsViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NewsViewControllerID")
+        (controller as? NewsViewController)?.id = id
+        
+        return controller as? NewsViewController
     }
 }
 

@@ -18,8 +18,10 @@ final class NewsConfigurator: NSObject {
     private let presenter:  NewsPresenter  = NewsPresenter()
     private let interactor: NewsInteractor = NewsInteractor()
     private let router:     NewsRouter     = NewsRouter()
+    private let dataSource: NewsCollectionViewDataSource = NewsCollectionViewDataSource()
     
     private let newsLoadService: NewsLoadService = NewsLoadService()
+    private let dateFormatterService: DateFormatterService = DateFormatterService()
     
     private override init() {
         super.init()
@@ -38,6 +40,7 @@ extension NewsConfigurator: NewsConfiguratorInput {
         configureController()
         configurePresenter()
         configureInteractor()
+        configureNewsLoadService()
     }
 }
 
@@ -45,17 +48,21 @@ extension NewsConfigurator: NewsConfiguratorInput {
 private extension NewsConfigurator {
     func configureController() {
         controller.presenter = presenter
+        controller.dataSource = dataSource
     }
     
     func configurePresenter() {
         presenter.interactor = interactor
         presenter.output     = controller
         presenter.router     = router
+        presenter.dataSource = dataSource
+        presenter.id         = controller.id
     }
     
     func configureInteractor() {
         interactor.output = presenter
         interactor.newsLoadService = newsLoadService
+        interactor.dateFormatterService = dateFormatterService
     }
     
     func configureNewsLoadService() {

@@ -9,26 +9,33 @@
 import Foundation
 
 protocol NewsPresenterInput {
-    // TODO
+    func viewDidLoad()
 }
 
 protocol NewsPresenterOutput {
-    // TODO
+    func reloadCollectionView()
 }
 
 final class NewsPresenter: NSObject {
     // MARK: - Public variables
+    var id:         String!
     var output:     NewsPresenterOutput!
     var interactor: NewsInteractorInput!
     var router:     NewsRouterInput!
+    var dataSource: NewsCollectionViewDataSourceInput!
 }
 
 // MARK: - NewsPresenterInput methods
 extension NewsPresenter: NewsPresenterInput {
-    // TODO
+    func viewDidLoad() {
+        interactor.getNewsContent(id: id)
+    }
 }
 
 // MARK: - NewsInteractorOutput methods
 extension NewsPresenter: NewsInteractorOutput {
-    // TODO
+    func viewModelsDidChanged(viewModels: [NewsModelType]) {
+        dataSource.set(viewModels: viewModels)
+        output.reloadCollectionView()
+    }
 }

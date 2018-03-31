@@ -121,7 +121,7 @@ extension FeedPresenter: FeedInteractorOutput {
 // MARK: - FeedCollectionViewDataSourceOutput methods
 extension FeedPresenter: FeedCollectionViewDataSourceOutput {
     func didSelectItem(id: String) {
-        // TODO: router
+        router.openNewsContent(id: id)
     }
     
     func pagingIndicatorWillDisplay() {

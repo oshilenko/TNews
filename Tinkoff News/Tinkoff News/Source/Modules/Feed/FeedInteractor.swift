@@ -24,6 +24,7 @@ final class FeedInteractor: NSObject {
     // MARK: - Public variables
     var output: FeedInteractorOutput!
     var feedLoadService: FeedLoadService!
+    var dateFormatterService: DateFormatterService!
     
     // MARK: - Fileprivate variables
     fileprivate let pageCount: Int = 20
@@ -72,30 +73,12 @@ fileprivate extension FeedInteractor {
         news.forEach { (news) in
             if let id = news.id {
                 let milliseconds = news.publicationDate?.milliseconds
-                let dateString: String? = configureDateString(milliseconds: milliseconds, with: "dd MMMM yyyy")
+                let dateString: String? = dateFormatterService
+                    .configureDateString(milliseconds: milliseconds, with: "dd MMMM yyyy")
                 viewModels.append(FeedItemViewModel(id: id, title: news.text, date: dateString))
             }
         }
         
         return viewModels
-    }
-    
-    func configureDateString(milliseconds: Int?, with format: String) -> String? {
-        guard let milliseconds = milliseconds else { return nil }
-        
-        let timeInterval = milliseconds / 1000
-        let date = Date(timeIntervalSince1970: TimeInterval(timeInterval))
-        let dateFormatter = DateFormatter()
-        var locale = Locale.current
-        
-        if let language = Locale.preferredLanguages.first {
-            let preferedLocale = Locale(identifier: language)
-            locale = preferedLocale
-        }
-        
-        dateFormatter.locale = locale
-        dateFormatter.dateFormat = format
-        
-        return dateFormatter.string(from: date)
     }
 }

@@ -21,6 +21,7 @@ final class FeedConfigurator: NSObject {
     
     private let dataSource: FeedCollectionViewDataSource = FeedCollectionViewDataSource()
     private let feedLoadService: FeedLoadService = FeedLoadService()
+    private let dateFormatterService: DateFormatterService = DateFormatterService()
     
     private override init() {
         super.init()
@@ -39,6 +40,7 @@ extension FeedConfigurator: FeedConfiguratorInput {
         configureController()
         configurePresenter()
         configureInteractor()
+        configureRouter()
         configureFeedLoadService()
         configureCollectionViewDataSource()
     }
@@ -61,6 +63,11 @@ private extension FeedConfigurator {
     func configureInteractor() {
         interactor.output = presenter
         interactor.feedLoadService = feedLoadService
+        interactor.dateFormatterService = dateFormatterService
+    }
+    
+    func configureRouter() {
+        router.feed = controller
     }
     
     func configureFeedLoadService() {

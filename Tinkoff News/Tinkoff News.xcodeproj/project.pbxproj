@@ -43,6 +43,8 @@
 		88CC0E99207026130055496D /* DateItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E97207026130055496D /* DateItemCollectionViewCell.xib */; };
 		88CC0E9C207026260055496D /* HeaderItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E9A207026260055496D /* HeaderItemCollectionViewCell.swift */; };
 		88CC0E9D207026260055496D /* HeaderItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC0E9B207026260055496D /* HeaderItemCollectionViewCell.xib */; };
+		88CC0E9F20702F390055496D /* NewsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0E9E20702F390055496D /* NewsCollectionViewDataSource.swift */; };
+		88CC0EA1207034670055496D /* DateFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC0EA0207034670055496D /* DateFormatterService.swift */; };
 		88D9941A2068130400B96885 /* FeedLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D994192068130400B96885 /* FeedLoadService.swift */; };
 		88D9941D20682CC000B96885 /* ResponseObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D9941C20682CC000B96885 /* ResponseObjects.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +88,8 @@
 		88CC0E97207026130055496D /* DateItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		88CC0E9A207026260055496D /* HeaderItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		88CC0E9B207026260055496D /* HeaderItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		88CC0E9E20702F390055496D /* NewsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		88CC0EA0207034670055496D /* DateFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterService.swift; sourceTree = "<group>"; };
 		88D994192068130400B96885 /* FeedLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoadService.swift; sourceTree = "<group>"; };
 		88D9941C20682CC000B96885 /* ResponseObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObjects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +195,7 @@
 				880396AE2064592A0020FD3D /* NewsRouter.swift */,
 				880396A8206456E10020FD3D /* NewsPresenter.swift */,
 				880396AA206456EE0020FD3D /* NewsInteractor.swift */,
+				88CC0E9E20702F390055496D /* NewsCollectionViewDataSource.swift */,
 				8836ECBF2069868600D710D2 /* Views */,
 			);
 			path = News;
@@ -243,6 +248,7 @@
 		8877984A20665D91006F1B8E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				88CC0EA0207034670055496D /* DateFormatterService.swift */,
 				88D994192068130400B96885 /* FeedLoadService.swift */,
 				8815CB1A20685DC6006F49A8 /* NewsLoadService.swift */,
 			);
@@ -403,6 +409,7 @@
 				8803969820644D8B0020FD3D /* FeedInteractor.swift in Sources */,
 				880396AD206458500020FD3D /* FeedRouter.swift in Sources */,
 				8815CB15206852D3006F49A8 /* ResponseObject.swift in Sources */,
+				88CC0E9F20702F390055496D /* NewsCollectionViewDataSource.swift in Sources */,
 				8877984C20665E44006F1B8E /* Constants.swift in Sources */,
 				88D9941D20682CC000B96885 /* ResponseObjects.swift in Sources */,
 				8836ECC22069871500D710D2 /* FeedItemCollectionViewCell.swift in Sources */,
@@ -418,6 +425,7 @@
 				8815CB13206848A3006F49A8 /* NewsShort.swift in Sources */,
 				8815CB1720685877006F49A8 /* PublicationDate.swift in Sources */,
 				8815CB19206859CA006F49A8 /* NewsContent.swift in Sources */,
+				88CC0EA1207034670055496D /* DateFormatterService.swift in Sources */,
 				88CC0E83206FB98D0055496D /* PagingItemCollectionViewCell.swift in Sources */,
 				8803969A20644D9C0020FD3D /* FeedPresenter.swift in Sources */,
 				8815CB1B20685DC6006F49A8 /* NewsLoadService.swift in Sources */,

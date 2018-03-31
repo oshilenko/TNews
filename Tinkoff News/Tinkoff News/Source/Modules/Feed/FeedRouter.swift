@@ -13,12 +13,14 @@ protocol FeedRouterInput {
 }
 
 final class FeedRouter: NSObject {
-    
+    var feed: FeedViewController!
 }
 
 // MARK: - FeedRouterInput methods
 extension FeedRouter: FeedRouterInput {
     func openNewsContent(id: String) {
-        // TODO
+        guard let controller = NewsViewController.create(id: id) else { return }
+        
+        feed.navigationController?.pushViewController(controller, animated: true)
     }
 }

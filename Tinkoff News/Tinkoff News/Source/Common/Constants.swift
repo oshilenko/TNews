@@ -17,7 +17,9 @@ struct Constants {
     public struct ServerErrorDescription {
         static public let unknown = "Что-то пошло не так, попробуйте повторить это действие позже"
         static public let noInternetConnection = "Не удалось загрузить новости, отсутсвует интернет соединение"
+        static public let noInternetConnectionNews = "Не удалось загрузить новость, отсутсвует интернет соединение"
         static public let emptyData = "Ой, новости на сегодня закончились"
+        static public let emptyDataNews = "Ой, новость недоступна"
     }
     
     public struct ServerError {

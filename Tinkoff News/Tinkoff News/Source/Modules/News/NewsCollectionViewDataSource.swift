@@ -60,6 +60,11 @@ extension NewsCollectionViewDataSource: UICollectionViewDataSource {
                 .dequeueReusableCell(withReuseIdentifier: Constants.Cells.ContentItemCollectionViewCell.reuseIdentifier,
                                      for: indexPath)
             return cell
+        case .emptyState:
+            let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: Constants.Cells.EmptyStateCollectionViewCell.reuseIdentifier,
+                                     for: indexPath)
+            return cell
         }
     }
     
@@ -77,6 +82,10 @@ extension NewsCollectionViewDataSource: UICollectionViewDataSource {
             cell.modificationDate = modificationDate
         case .content(let text):
             guard let cell = cell as? ContentItemCollectionViewCell else { return }
+            
+            cell.text = text
+        case .emptyState(let text):
+            guard let cell = cell as? EmptyStateCollectionViewCell else { return }
             
             cell.text = text
         }
@@ -97,6 +106,8 @@ extension NewsCollectionViewDataSource: UICollectionViewDelegateFlowLayout {
             guard let text = text else { return .zero }
             
             return ContentItemCollectionViewCell.size(text: text)
+        case .emptyState:
+            return EmptyStateCollectionViewCell.size()
         }
     }
 }
@@ -110,6 +121,8 @@ extension NewsCollectionViewDataSource: UICollectionViewDelegate {
         case .dates:
             break
         case .content:
+            break
+        case .emptyState:
             break
         }
     }

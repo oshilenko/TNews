@@ -12,6 +12,7 @@ enum NewsModelType {
     case header(id: String?, text: String?, date: String?)
     case dates(createDate: String?, modificationDate: String?)
     case content(text: NSAttributedString?)
+    case emptyState(text: String)
 }
 
 protocol NewsInteractorInput {
@@ -42,7 +43,18 @@ extension NewsInteractor: NewsInteractorInput {
 // MARK: - NewsLoadServiceOutput methods
 extension NewsInteractor: NewsLoadServiceOutput {
     func requestFinishedWithError(error: Error?) {
-        // TODO
+        var emptyStateString = Constants.ServerErrorDescription.unknown
+        
+        if let error = error {
+            if error._code == NSURLErrorNetworkConnectionLost || error._code == NSURLErrorTimedOut {
+                emptyStateString = Constants.ServerErrorDescription.noInternetConnectionNews
+            } else if error._domain == Constants.ServerError.emptyData.domain {
+                emptyStateString = Constants.ServerErrorDescription.emptyDataNews
+            }
+        }
+        
+        viewModels = [.emptyState(text: emptyStateString)]
+        output.viewModelsDidChanged(viewModels: viewModels)
     }
     
     func requestFinishedWithSuccess(success: NewsContent) {

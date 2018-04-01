@@ -68,6 +68,8 @@ private extension NewsViewController {
                                 forCellWithReuseIdentifier: Constants.Cells.DateItemCollectionViewCell.reuseIdentifier)
         collectionView.register(Constants.Cells.ContentItemCollectionViewCell.nib,
                                 forCellWithReuseIdentifier: Constants.Cells.ContentItemCollectionViewCell.reuseIdentifier)
+        collectionView.register(Constants.Cells.EmptyStateCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: Constants.Cells.EmptyStateCollectionViewCell.reuseIdentifier)
     }
 }
 

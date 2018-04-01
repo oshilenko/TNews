@@ -20,6 +20,7 @@
 		8815CB1720685877006F49A8 /* PublicationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815CB1620685877006F49A8 /* PublicationDate.swift */; };
 		8815CB19206859CA006F49A8 /* NewsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815CB18206859CA006F49A8 /* NewsContent.swift */; };
 		8815CB1B20685DC6006F49A8 /* NewsLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815CB1A20685DC6006F49A8 /* NewsLoadService.swift */; };
+		88246D1A20712F640042B858 /* ManagedObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88246D1920712F640042B858 /* ManagedObjectModel.swift */; };
 		8831B50D2061962B00731C34 /* Tinkoff_News.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8831B50B2061962B00731C34 /* Tinkoff_News.xcdatamodeld */; };
 		8831B528206198B000731C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8831B51D206198B000731C34 /* AppDelegate.swift */; };
 		8831B529206198B000731C34 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8831B521206198B000731C34 /* FeedViewController.swift */; };
@@ -63,6 +64,7 @@
 		8815CB1620685877006F49A8 /* PublicationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDate.swift; sourceTree = "<group>"; };
 		8815CB18206859CA006F49A8 /* NewsContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContent.swift; sourceTree = "<group>"; };
 		8815CB1A20685DC6006F49A8 /* NewsLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLoadService.swift; sourceTree = "<group>"; };
+		88246D1920712F640042B858 /* ManagedObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectModel.swift; sourceTree = "<group>"; };
 		8831B5012061962B00731C34 /* Tinkoff News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8831B50C2061962B00731C34 /* Tinkoff_News.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tinkoff_News.xcdatamodel; sourceTree = "<group>"; };
 		8831B5132061962B00731C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				8877984D20666006006F1B8E /* RequestManager.swift */,
+				88246D1920712F640042B858 /* ManagedObjectModel.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				8831B529206198B000731C34 /* FeedViewController.swift in Sources */,
 				880396AB206456EE0020FD3D /* NewsInteractor.swift in Sources */,
 				8803969820644D8B0020FD3D /* FeedInteractor.swift in Sources */,
+				88246D1A20712F640042B858 /* ManagedObjectModel.swift in Sources */,
 				880396AD206458500020FD3D /* FeedRouter.swift in Sources */,
 				8815CB15206852D3006F49A8 /* ResponseObject.swift in Sources */,
 				88CC0E9F20702F390055496D /* NewsCollectionViewDataSource.swift in Sources */,

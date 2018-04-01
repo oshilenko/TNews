@@ -21,6 +21,23 @@ final class NewsShort {
         self.text            = text
         self.publicationDate = publicationDate
         self.bankInfoTypeId  = bankInfoTypeId
+        
+        _ = ManagedObjectModel.shared.write(newsShort: self)
+        ManagedObjectModel.shared.saveContext()
+    }
+    
+    init(dataModel: NewsShortModel) {
+        self.id             = dataModel.id
+        self.name           = dataModel.name
+        self.text           = dataModel.text
+        
+        let bankInfoTypeId = Int(dataModel.bankInfoTypeId)
+        self.bankInfoTypeId = bankInfoTypeId
+        
+        let milliseconds: Int? = dataModel.publicationDate?.milliseconds != nil
+            ? Int(dataModel.publicationDate!.milliseconds) : nil
+        let publicationDate = PublicationDate(milliseconds: milliseconds)
+        self.publicationDate = publicationDate
     }
 }
 

@@ -35,6 +35,12 @@ final class FeedInteractor: NSObject {
 extension FeedInteractor: FeedInteractorInput {
     func getFirstPage() {
         news.removeAll()
+        if let newsFromCoreData = ManagedObjectModel.shared.readNewsShort(limit: pageCount), !newsFromCoreData.isEmpty {
+            let news: [NewsShort] = newsFromCoreData.map({ NewsShort(dataModel: $0) })
+            let viewModels = convertToModels(news: news)
+            output.didGetFirstPage(news: viewModels)
+        }
+        
         feedLoadService.getFeedList(first: news.count, last: news.count + pageCount)
     }
     

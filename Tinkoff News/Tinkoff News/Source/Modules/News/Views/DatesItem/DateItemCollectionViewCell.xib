@@ -11,7 +11,6 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
             <string>HelveticaNeue-Medium</string>
         </array>
     </customFonts>
@@ -19,23 +18,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DateItemCollectionViewCellID" id="gTV-IL-0wX" customClass="DateItemCollectionViewCell" customModule="Tinkoff_News" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="23"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="23"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctT-Up-xKW">
-                        <rect key="frame" x="16" y="10" width="0.0" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="rHI-Ld-6hj"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                        <color key="textColor" red="0.56768876310000005" green="0.59554249049999997" blue="0.63298529390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykj-29-yYJ">
-                        <rect key="frame" x="16" y="29" width="0.0" height="15"/>
+                        <rect key="frame" x="16" y="4" width="0.0" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="Gji-Pn-PD7"/>
                         </constraints>
@@ -46,16 +36,13 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Ykj-29-yYJ" secondAttribute="bottom" constant="10" id="3MS-IR-lZi"/>
+                <constraint firstAttribute="bottom" secondItem="Ykj-29-yYJ" secondAttribute="bottom" constant="4" id="3MS-IR-lZi"/>
                 <constraint firstItem="Ykj-29-yYJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="Mrt-AE-Iff"/>
-                <constraint firstItem="ctT-Up-xKW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="gBo-hJ-RHT"/>
-                <constraint firstItem="Ykj-29-yYJ" firstAttribute="top" secondItem="ctT-Up-xKW" secondAttribute="bottom" constant="4" id="jkx-g3-Goj"/>
-                <constraint firstItem="ctT-Up-xKW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="nie-M1-IHV"/>
+                <constraint firstItem="Ykj-29-yYJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="wf8-wH-Y9n"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
-                <outlet property="firstLineDateLabel" destination="ctT-Up-xKW" id="NtX-xK-3Ey"/>
-                <outlet property="secondLineDateLabel" destination="Ykj-29-yYJ" id="ylD-Nf-Pzk"/>
+                <outlet property="dateLabel" destination="Ykj-29-yYJ" id="ylD-Nf-Pzk"/>
             </connections>
         </collectionViewCell>
     </objects>

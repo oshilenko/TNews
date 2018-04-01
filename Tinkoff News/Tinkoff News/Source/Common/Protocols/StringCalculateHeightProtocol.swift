@@ -18,6 +18,7 @@ protocol StringCalculateHeightProtocol {
 public enum StringItemType {
     case feedItemTitle(text: String)
     case newsHeaderItemTitle(text: String)
+    case newsContentItemTitle(text: NSAttributedString)
 }
 
 // MARK: - StringCalculateHeightProtocol methods
@@ -28,6 +29,8 @@ extension StringItemType: StringCalculateHeightProtocol {
             return UIFont(name: "HelveticaNeue-Medium", size: 17)!
         case .newsHeaderItemTitle:
             return UIFont(name: "HelveticaNeue-Medium", size: 21)!
+        case .newsContentItemTitle:
+            return UIFont.systemFont(ofSize: UIFont.systemFontSize)
         }
     }
     
@@ -36,6 +39,8 @@ extension StringItemType: StringCalculateHeightProtocol {
         case .feedItemTitle:
             return UIScreen.main.bounds.size.width - 32
         case .newsHeaderItemTitle:
+            return UIScreen.main.bounds.size.width - 32
+        case .newsContentItemTitle:
             return UIScreen.main.bounds.size.width - 32
         }
     }
@@ -57,9 +62,13 @@ extension StringItemType: StringCalculateHeightProtocol {
                               context: nil).size
             
             return textSize
+        case .newsContentItemTitle(let attrStr):
+            let textSize = attrStr
+                .boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
+                              options: [.usesLineFragmentOrigin],
+                              context: nil).size
+            
+            return textSize
         }
     }
-    
-    
 }
-

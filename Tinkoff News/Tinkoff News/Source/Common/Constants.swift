@@ -72,7 +72,7 @@ struct Constants {
         public struct DateItemCollectionViewCell {
             static public let reuseIdentifier: String = "DateItemCollectionViewCellID"
             static public let nib: UINib = UINib(nibName: "DateItemCollectionViewCell", bundle: nil)
-            static public let height: CGFloat = 54
+            static public let height: CGFloat = 25
         }
         
         public struct ContentItemCollectionViewCell {

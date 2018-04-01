@@ -9,16 +9,30 @@
 import UIKit
 
 class ContentItemCollectionViewCell: UICollectionViewCell {
-    
-    var text: String? {
+    // MARK: - Public variables
+    var text: NSAttributedString? {
         didSet {
-            // TODO
+            guard let text = text else { return }
+            
+            textLabel.attributedText = text
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // MARK: - IBOutlets
+    @IBOutlet fileprivate weak var textLabel: UILabel!
+    
+    // MARK: - Public methods
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        textLabel.text = nil
     }
+}
 
+// MARK: - Public methods
+extension ContentItemCollectionViewCell {
+    static func size(text: NSAttributedString) -> CGSize {
+        let item: StringItemType = .newsContentItemTitle(text: text)
+        return CGSize(width: UIScreen.main.bounds.width, height: item.size.height + 20)
+    }
 }

@@ -11,7 +11,7 @@ import Foundation
 enum NewsModelType {
     case header(id: String?, text: String?, date: String?)
     case dates(createDate: String?, modificationDate: String?)
-    case content(text: String?)
+    case content(text: NSAttributedString?)
 }
 
 protocol NewsInteractorInput {
@@ -55,13 +55,29 @@ extension NewsInteractor: NewsLoadServiceOutput {
         let creationDate = dateFormatterService
             .configureDateString(milliseconds: creationMilliseconds, with: "dd MMMM yyyy")
         let modificationDate = dateFormatterService
-            .configureDateString(milliseconds: modificationMilliseconds, with: "dd MMMM yyyy")
+            .configureDateString(milliseconds: modificationMilliseconds, with: "dd.MM.yyyy")
         
+        var attributedContent: NSAttributedString?
+        if let html = success.content {
+            let attrStr = convertToAttributedString(html: html)
+            attributedContent = attrStr == nil ? NSAttributedString(string: html) : attrStr
+        }
         
         viewModels = [.header(id: success.title?.id, text: success.title?.text, date: date),
                       .dates(createDate: creationDate, modificationDate: modificationDate),
-                      .content(text: success.content)]
+                      .content(text: attributedContent)]
         
         output.viewModelsDidChanged(viewModels: viewModels)
+    }
+}
+
+fileprivate extension NewsInteractor {
+    func convertToAttributedString(html: String) -> NSAttributedString? {
+        guard let data = html.data(using: .utf8) else { return nil }
+        
+        return try? NSAttributedString(data: data,
+                                       options: [.documentType : NSAttributedString.DocumentType.html,
+                                                 .characterEncoding: String.Encoding.utf8.rawValue],
+                                       documentAttributes: nil)
     }
 }

@@ -9,32 +9,23 @@
 import UIKit
 
 class DateItemCollectionViewCell: UICollectionViewCell {
-    
-    var creationDate: String? {
-        didSet {
-            guard let text = creationDate else { return }
-            
-            firstLineDateLabel.text = text
-        }
-    }
-    
+    // MARK: - Public variables
+    var creationDate: String?
     var modificationDate: String? {
         didSet {
             guard let text = modificationDate else { return }
             
-            secondLineDateLabel.text = text
+            dateLabel.text = "Редакция от \(text)"
         }
     }
 
-    @IBOutlet fileprivate weak var firstLineDateLabel: UILabel!
-    @IBOutlet fileprivate weak var secondLineDateLabel: UILabel!
+    @IBOutlet fileprivate weak var dateLabel: UILabel!
     
     // MARK: - Public methods
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        firstLineDateLabel.text = nil
-        secondLineDateLabel.text = nil
+        dateLabel.text = nil
     }
 }
 

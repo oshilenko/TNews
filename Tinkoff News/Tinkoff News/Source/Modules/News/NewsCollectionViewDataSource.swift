@@ -94,7 +94,9 @@ extension NewsCollectionViewDataSource: UICollectionViewDelegateFlowLayout {
         case .dates:
             return DateItemCollectionViewCell.size()
         case .content(let text):
-            return .zero
+            guard let text = text else { return .zero }
+            
+            return ContentItemCollectionViewCell.size(text: text)
         }
     }
 }

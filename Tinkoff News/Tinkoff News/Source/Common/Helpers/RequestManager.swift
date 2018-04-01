@@ -47,15 +47,20 @@ extension RequestManager {
                        parameters: parameters, completion: { [weak self] (data, response, error) in
                         guard let strongSelf = self else { return }
                         
-                        let decoder = JSONDecoder()
-                        
                         if let error = error {
                             failure(error)
                         } else if let response = response, let httpResponse = response as? HTTPURLResponse,
                             ([Int](200..<300)).contains(where: { $0 == httpResponse.statusCode }) {
                             strongSelf.printLogs(response.description)
+                            let decoder = JSONDecoder()
                             
-                            if let data = data, let jsonResponse = try? decoder.decode(ResponseObject<T>.self, from: data) {
+                            if let data = data,  let jsonResult = try? JSONSerialization
+                                .jsonObject(with: data, options: .mutableContainers) as? NSDictionary {
+                                strongSelf.printLogs(String(describing: jsonResult))
+                            }
+                            
+                            if let data = data,
+                                let jsonResponse = try? decoder.decode(ResponseObject<T>.self, from: data) {
                                 if let object = jsonResponse.payload {
                                     success(object)
                                 } else {
@@ -81,13 +86,17 @@ extension RequestManager {
                        parameters: parameters, completion: { [weak self] (data, response, error) in
             guard let strongSelf = self else { return }
             
-            let decoder = JSONDecoder()
-            
             if let error = error {
                 failure(error)
             } else if let response = response, let httpResponse = response as? HTTPURLResponse,
                 ([Int](200..<300)).contains(where: { $0 == httpResponse.statusCode }) {
                 strongSelf.printLogs(response.description)
+                let decoder = JSONDecoder()
+                
+                if let data = data,  let jsonResult = try? JSONSerialization
+                    .jsonObject(with: data, options: .mutableContainers) as? NSDictionary {
+                    strongSelf.printLogs(String(describing: jsonResult))
+                }
                 
                 if let data = data, let jsonResponse = try? decoder.decode(ResponseObjects<T>.self, from: data) {
                     if let objects = jsonResponse.payload {
@@ -129,8 +138,10 @@ private extension RequestManager {
         var components: [(String, String)] = []
         
         parameters.forEach { (key, value) in
-            if let value = value as? Int {
+            if let value = value as? NSNumber {
                 components.append((key, "\(value)"))
+            } else if let value = value as? String {
+                components.append((key, value))
             }
         }
         
